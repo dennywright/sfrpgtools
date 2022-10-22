@@ -1,8 +1,8 @@
 click==6.7
 Flask==1.0
 Frozen-Flask==0.15
-itsdangerous==0.24
+itsdangerous==2.0.1
 Jinja2==2.11.3
-MarkupSafe==1.0
-pkg-resources==0.0.0
-Werkzeug==0.15.3
+MarkupSafe==2.0.1
+#pkg-resources==0.0.0
+Werkzeug==0.15.5
