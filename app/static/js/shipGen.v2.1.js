@@ -312,19 +312,25 @@ function generateShip() {
 
   };
   //CREW
-  crewSkills = ["Bluff","Diplomacy","Computers","Engineering","Gunnery","Intimidate","Piloting"]
+  crewSkills = ["Deception","Persuasion","Data","Technology","Intimidation","Piloting","Science"]
+  expertSkill = crewSkills.selectRandom()
+  crewSkills.push("Gunnery") // Gunnery can't be expert so add it after we select an Expert skill
+  goodSkill = crewSkills.selectRandom()
+  while (goodSkill !== expertSkill) {
+    goodSkill = crewSkills.selectRandom()
+  }
+
   crewSkillStrings = {}
-  rank = shipBlock.tier.replace('1/2','1').replace('1/3','1').replace('1/4','1')
-  rankString = " (" + rank + " rank" + (rank == "1" ? "" : "s") + ")"
-  masterSkill = crewSkills.selectRandom()
 
   for (var i = 0; i < crewSkills.length; i++) {
-    if (crewSkills[i] == masterSkill) {
-      var bonus = crewSkillBonus[shipBlock.tier][0] + (crewSkills[i] == "Computers" ? shipBlock.compMod : 0) + (crewSkills[i] == "Piloting" ? shipBlock.piloting : 0)
-      crewSkillStrings[crewSkills[i]] = crewSkills[i] + " +" + bonus + (crewSkills[i] == "Gunnery" ? "" : rankString)
+    if (crewSkills[i] == expertSkill) {
+      var bonus = crewSkillBonus[shipBlock.tier][1] + (crewSkills[i] == "Data" ? shipBlock.compMod : 0) + (crewSkills[i] == "Piloting" ? shipBlock.piloting : 0)
+    if (crewSkills[i] == goodSkill) {
+      var bonus = crewSkillBonus[shipBlock.tier][1] + (crewSkills[i] == "Data" ? shipBlock.compMod : 0) + (crewSkills[i] == "Piloting" ? shipBlock.piloting : 0)
+      crewSkillStrings[crewSkills[i]] = crewSkills[i] + " +" + bonus
     } else {
-      var bonus = crewSkillBonus[shipBlock.tier][1] + (crewSkills[i] == "Computers" ? shipBlock.compMod : 0) + (crewSkills[i] == "Piloting" ? shipBlock.piloting : 0)
-      crewSkillStrings[crewSkills[i]] = crewSkills[i] + " +" + bonus + (crewSkills[i] == "Gunnery" ? "" : rankString)
+      var bonus = crewSkillBonus[shipBlock.tier][0] + (crewSkills[i] == "Data" ? shipBlock.compMod : 0) + (crewSkills[i] == "Piloting" ? shipBlock.piloting : 0)
+      crewSkillStrings[crewSkills[i]] = crewSkills[i] + " +" + bonus
     }
   }
 
@@ -345,20 +351,20 @@ function generateShip() {
   shipBlock.scienceOfficer.bonus = []
 
   if (shipBlock.complement == 1 || shipBlock.complement == 2 || shipBlock.complement == 3) {
-    shipBlock.pilot.bonus.push(crewSkillStrings.Computers)
+    shipBlock.pilot.bonus.push(crewSkillStrings.Data)
     shipBlock.pilot.bonus.push(crewSkillStrings.Gunnery)
     shipBlock.pilot.bonus.push(crewSkillStrings.Piloting)
     if (shipBlock.complement == 2 || shipBlock.complement == 3) {
       shipBlock.gunner.bonus.push(crewSkillStrings.Gunnery)
       if (shipBlock.complement == 3) {
-        shipBlock.engineer.bonus.push(crewSkillStrings.Engineering)
+        shipBlock.engineer.bonus.push(crewSkillStrings.Technology)
       }
     }
   } else if (shipBlock.complement == 4) {
     for (string in crewSkillStrings) {
       shipBlock.captain.bonus.push(crewSkillStrings[string])
     }
-    shipBlock.engineer.bonus.push(crewSkillStrings.Engineering)
+    shipBlock.engineer.bonus.push(crewSkillStrings.Technology)
     shipBlock.gunner.bonus.push(crewSkillStrings.Gunnery)
     shipBlock.pilot.bonus.push(crewSkillStrings.Piloting)
   } else {
@@ -396,10 +402,10 @@ function generateShip() {
     for (string in crewSkillStrings) {
       shipBlock.captain.bonus.push(crewSkillStrings[string])
     }
-    shipBlock.engineer.bonus.push(crewSkillStrings.Engineering)
+    shipBlock.engineer.bonus.push(crewSkillStrings.Technology)
     shipBlock.pilot.bonus.push(crewSkillStrings.Piloting)
     shipBlock.gunner.bonus.push(crewSkillStrings.Gunnery)
-    shipBlock.scienceOfficer.bonus.push(crewSkillStrings.Computers)
+    shipBlock.scienceOfficer.bonus.push(crewSkillStrings.Data)
 
   }
 
