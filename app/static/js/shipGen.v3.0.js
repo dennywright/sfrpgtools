@@ -312,19 +312,25 @@ function generateShip() {
 
   };
   //CREW
-  crewSkills = ["Deception", "Persuasion", "Data", "Technology", "Gunnery", "Intimidation", "Piloting", "Science", "Arcana"]
+  crewSkills = ["Deception", "Persuasion", "Data", "Technology", "Intimidation", "Piloting", "Science", "Arcana"]
+  expertSkill = crewSkills.selectRandom()
+  crewSkills.push("Gunnery")
+  goodSkill = crewSkills.selectRandom()
+  while (goodSkill === expertSkill) {
+    goodSkill = crewSkills.selectRandom()
+  }
   crewSkillStrings = {}
-  rank = shipBlock.tier.replace('1/2', '1').replace('1/3', '1').replace('1/4', '1')
-  rankString = " (" + rank + " rank" + (rank == "1" ? "" : "s") + ")"
-  masterSkill = crewSkills.selectRandom()
 
   for (var i = 0; i < crewSkills.length; i++) {
-    if (crewSkills[i] == masterSkill) {
-      var bonus = crewSkillBonus[shipBlock.tier][0] + (crewSkills[i] == "Data" ? shipBlock.compMod : 0) + (crewSkills[i] == "Piloting" ? shipBlock.piloting : 0)
-      crewSkillStrings[crewSkills[i]] = crewSkills[i] + " +" + bonus + (crewSkills[i] == "Gunnery" ? "" : rankString)
-    } else {
+    if (crewSkills[i] == expertSkill) {
+      var bonus = crewSkillBonus[shipBlock.tier][2] + (crewSkills[i] == "Data" ? shipBlock.compMod : 0) + (crewSkills[i] == "Piloting" ? shipBlock.piloting : 0)
+      crewSkillStrings[crewSkills[i]] = crewSkills[i] + " +" + bonus + " (expert)"
+    } else if (crewSkills[i] == goodSkill) {
       var bonus = crewSkillBonus[shipBlock.tier][1] + (crewSkills[i] == "Data" ? shipBlock.compMod : 0) + (crewSkills[i] == "Piloting" ? shipBlock.piloting : 0)
-      crewSkillStrings[crewSkills[i]] = crewSkills[i] + " +" + bonus + (crewSkills[i] == "Gunnery" ? "" : rankString)
+      crewSkillStrings[crewSkills[i]] = crewSkills[i] + " +" + bonus + " (good)"
+    } else {
+      var bonus = crewSkillBonus[shipBlock.tier][0] + (crewSkills[i] == "Data" ? shipBlock.compMod : 0) + (crewSkills[i] == "Piloting" ? shipBlock.piloting : 0)
+      crewSkillStrings[crewSkills[i]] = crewSkills[i] + " +" + bonus + " (average)"
     }
   }
 
