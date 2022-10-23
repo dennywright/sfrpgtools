@@ -285,85 +285,13 @@ var shipDefenses = {
 			"TL": 1
 		}
 	},
-	"Mk 10 defenses": {
-		"cost": {
-			"BP": 27,
-			"PCU": 13
-		},
-		"value": {
-			"TL": 10
-		}
-	},
-	"Mk 11 defenses": {
-		"cost": {
-			"BP": 33,
-			"PCU": 16
-		},
-		"value": {
-			"TL": 11
-		}
-	},
-	"Mk 12 defenses": {
-		"cost": {
-			"BP": 40,
-			"PCU": 20
-		},
-		"value": {
-			"TL": 12
-		}
-	},
-	"Mk 13 defenses": {
-		"cost": {
-			"BP": 50,
-			"PCU": 25
-		},
-		"value": {
-			"TL": 13
-		}
-	},
-	"Mk 14 defenses": {
-		"cost": {
-			"BP": 65,
-			"PCU": 32
-		},
-		"value": {
-			"TL": 14
-		}
-	},
-	"Mk 15 defenses": {
-		"cost": {
-			"BP": 90,
-			"PCU": 45
-		},
-		"value": {
-			"TL": 15
-		}
-	},
-	"Mk 2 defenses": {
-		"cost": {
-			"BP": 3,
-			"PCU": 1
-		},
-		"value": {
-			"TL": 2
-		}
-	},
 	"Mk 3 defenses": {
 		"cost": {
 			"BP": 4,
 			"PCU": 2
 		},
 		"value": {
-			"TL": 3
-		}
-	},
-	"Mk 4 defenses": {
-		"cost": {
-			"BP": 6,
-			"PCU": 3
-		},
-		"value": {
-			"TL": 4
+			"TL": 2
 		}
 	},
 	"Mk 5 defenses": {
@@ -372,16 +300,7 @@ var shipDefenses = {
 			"PCU": 4
 		},
 		"value": {
-			"TL": 5
-		}
-	},
-	"Mk 6 defenses": {
-		"cost": {
-			"BP": 11,
-			"PCU": 5
-		},
-		"value": {
-			"TL": 6
+			"TL": 3
 		}
 	},
 	"Mk 7 defenses": {
@@ -390,16 +309,7 @@ var shipDefenses = {
 			"PCU": 7
 		},
 		"value": {
-			"TL": 7
-		}
-	},
-	"Mk 8 defenses": {
-		"cost": {
-			"BP": 18,
-			"PCU": 9
-		},
-		"value": {
-			"TL": 8
+			"TL": 4
 		}
 	},
 	"Mk 9 defenses": {
@@ -408,9 +318,36 @@ var shipDefenses = {
 			"PCU": 11
 		},
 		"value": {
-			"TL": 9
+			"TL": 5
 		}
 	}
+	"Mk 11 defenses": {
+		"cost": {
+			"BP": 33,
+			"PCU": 16
+		},
+		"value": {
+			"TL": 6
+		}
+	},
+	"Mk 13 defenses": {
+		"cost": {
+			"BP": 50,
+			"PCU": 25
+		},
+		"value": {
+			"TL": 7
+		}
+	},
+	"Mk 15 defenses": {
+		"cost": {
+			"BP": 90,
+			"PCU": 45
+		},
+		"value": {
+			"TL": 8
+		}
+	},
 };
 
 var shipDriftEngines = {
