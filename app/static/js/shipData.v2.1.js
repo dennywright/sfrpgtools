@@ -183,16 +183,6 @@ var shipComputers = {
 			"computerNodes": 0
 		}
 	},
-	"Mk 1 duonode": {
-		"cost": {
-			"BP": 2,
-			"PCU": 10
-		},
-		"value": {
-			"computerBonus": 1,
-			"computerNodes": 2
-		}
-	},
 	"Mk 1 mononode": {
 		"cost": {
 			"BP": 1,
@@ -203,164 +193,34 @@ var shipComputers = {
 			"computerNodes": 1
 		}
 	},
-	"Mk 1 tetranode": {
-		"cost": {
-			"BP": 4,
-			"PCU": 10
-		},
-		"value": {
-			"computerBonus": 1,
-			"computerNodes": 4
-		}
-	},
-	"Mk 1 trinode": {
-		"cost": {
-			"BP": 3,
-			"PCU": 10
-		},
-		"value": {
-			"computerBonus": 1,
-			"computerNodes": 3
-		}
-	},
-	"Mk 10 duonode": {
-		"cost": {
-			"BP": 200,
-			"PCU": 55
-		},
-		"value": {
-			"computerBonus": 10,
-			"computerNodes": 2
-		}
-	},
-	"Mk 10 mononode": {
-		"cost": {
-			"BP": 100,
-			"PCU": 55
-		},
-		"value": {
-			"computerBonus": 10,
-			"computerNodes": 1
-		}
-	},
 	"Mk 2 duonode": {
 		"cost": {
-			"BP": 8,
-			"PCU": 15
-		},
-		"value": {
-			"computerBonus": 2,
-			"computerNodes": 2
-		}
-	},
-	"Mk 2 mononode": {
-		"cost": {
 			"BP": 4,
 			"PCU": 15
 		},
 		"value": {
-			"computerBonus": 2,
-			"computerNodes": 1
-		}
-	},
-	"Mk 2 tetranode": {
-		"cost": {
-			"BP": 16,
-			"PCU": 15
-		},
-		"value": {
-			"computerBonus": 2,
-			"computerNodes": 4
-		}
-	},
-	"Mk 2 trinode": {
-		"cost": {
-			"BP": 12,
-			"PCU": 15
-		},
-		"value": {
-			"computerBonus": 2,
-			"computerNodes": 3
-		}
-	},
-	"Mk 3 duonode": {
-		"cost": {
-			"BP": 18,
-			"PCU": 20
-		},
-		"value": {
-			"computerBonus": 3,
+			"computerBonus": 1,
 			"computerNodes": 2
 		}
 	},
-	"Mk 3 mononode": {
+	"Mk 3 trinode": {
 		"cost": {
 			"BP": 9,
 			"PCU": 20
 		},
 		"value": {
-			"computerBonus": 3,
-			"computerNodes": 1
-		}
-	},
-	"Mk 3 tetranode": {
-		"cost": {
-			"BP": 36,
-			"PCU": 20
-		},
-		"value": {
-			"computerBonus": 3,
-			"computerNodes": 4
-		}
-	},
-	"Mk 3 trinode": {
-		"cost": {
-			"BP": 27,
-			"PCU": 20
-		},
-		"value": {
-			"computerBonus": 3,
+			"computerBonus": 1,
 			"computerNodes": 3
 		}
 	},
-	"Mk 4 duonode": {
-		"cost": {
-			"BP": 32,
-			"PCU": 25
-		},
-		"value": {
-			"computerBonus": 4,
-			"computerNodes": 2
-		}
-	},
-	"Mk 4 mononode": {
+	"Mk 4 tetranode": {
 		"cost": {
 			"BP": 16,
 			"PCU": 25
 		},
 		"value": {
-			"computerBonus": 4,
-			"computerNodes": 1
-		}
-	},
-	"Mk 4 trinode": {
-		"cost": {
-			"BP": 48,
-			"PCU": 25
-		},
-		"value": {
-			"computerBonus": 4,
-			"computerNodes": 3
-		}
-	},
-	"Mk 5 duonode": {
-		"cost": {
-			"BP": 50,
-			"PCU": 30
-		},
-		"value": {
-			"computerBonus": 5,
-			"computerNodes": 2
+			"computerBonus": 1,
+			"computerNodes": 4
 		}
 	},
 	"Mk 5 mononode": {
@@ -369,68 +229,28 @@ var shipComputers = {
 			"PCU": 30
 		},
 		"value": {
-			"computerBonus": 5,
+			"computerBonus": 2,
 			"computerNodes": 1
 		}
 	},
-	"Mk 5 trinode": {
-		"cost": {
-			"BP": 75,
-			"PCU": 30
-		},
-		"value": {
-			"computerBonus": 5,
-			"computerNodes": 3
-		}
-	},
 	"Mk 6 duonode": {
-		"cost": {
-			"BP": 72,
-			"PCU": 35
-		},
-		"value": {
-			"computerBonus": 6,
-			"computerNodes": 2
-		}
-	},
-	"Mk 6 mononode": {
 		"cost": {
 			"BP": 36,
 			"PCU": 35
 		},
 		"value": {
-			"computerBonus": 6,
-			"computerNodes": 1
-		}
-	},
-	"Mk 7 duonode": {
-		"cost": {
-			"BP": 98,
-			"PCU": 40
-		},
-		"value": {
-			"computerBonus": 7,
+			"computerBonus": 2,
 			"computerNodes": 2
 		}
 	},
-	"Mk 7 mononode": {
+	"Mk 7 trinode": {
 		"cost": {
 			"BP": 49,
 			"PCU": 40
 		},
 		"value": {
-			"computerBonus": 7,
-			"computerNodes": 1
-		}
-	},
-	"Mk 8 duonode": {
-		"cost": {
-			"BP": 128,
-			"PCU": 45
-		},
-		"value": {
-			"computerBonus": 8,
-			"computerNodes": 2
+			"computerBonus": 2,
+			"computerNodes": 3
 		}
 	},
 	"Mk 8 mononode": {
@@ -439,28 +259,18 @@ var shipComputers = {
 			"PCU": 45
 		},
 		"value": {
-			"computerBonus": 8,
+			"computerBonus": 3,
 			"computerNodes": 1
 		}
 	},
 	"Mk 9 duonode": {
 		"cost": {
-			"BP": 162,
-			"PCU": 50
-		},
-		"value": {
-			"computerBonus": 9,
-			"computerNodes": 2
-		}
-	},
-	"Mk 9 mononode": {
-		"cost": {
 			"BP": 81,
 			"PCU": 50
 		},
 		"value": {
-			"computerBonus": 9,
-			"computerNodes": 1
+			"computerBonus": 3,
+			"computerNodes": 2
 		}
 	}
 };
