@@ -100,3 +100,8 @@ pyvenv.cfg
 
 # mypy
 .mypy_cache/
+
+# IDEs
+.fleet/
+.idea/
+.vscode/
