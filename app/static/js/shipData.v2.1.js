@@ -114,74 +114,10 @@ var shipArmor = {
 			"turn": 0
 		}
 	},
-	"Mk 10 armor": {
-		"BPCostMultiplier": 21,
-		"value": {
-			"AC": 10,
-			"TL": -2,
-			"turn": 1
-		}
-	},
-	"Mk 11 armor": {
-		"BPCostMultiplier": 25,
-		"value": {
-			"AC": 11,
-			"TL": -2,
-			"turn": 1
-		}
-	},
-	"Mk 12 armor": {
-		"BPCostMultiplier": 30,
-		"value": {
-			"AC": 12,
-			"TL": -3,
-			"turn": 2
-		}
-	},
-	"Mk 13 armor": {
-		"BPCostMultiplier": 35,
-		"value": {
-			"AC": 13,
-			"TL": -3,
-			"turn": 2
-		}
-	},
-	"Mk 14 armor": {
-		"BPCostMultiplier": 40,
-		"value": {
-			"AC": 14,
-			"TL": -3,
-			"turn": 2
-		}
-	},
-	"Mk 15 armor": {
-		"BPCostMultiplier": 45,
-		"value": {
-			"AC": 15,
-			"TL": -4,
-			"turn": 3
-		}
-	},
-	"Mk 2 armor": {
-		"BPCostMultiplier": 2,
-		"value": {
-			"AC": 2,
-			"TL": 0,
-			"turn": 0
-		}
-	},
 	"Mk 3 armor": {
 		"BPCostMultiplier": 3,
 		"value": {
-			"AC": 3,
-			"TL": 0,
-			"turn": 0
-		}
-	},
-	"Mk 4 armor": {
-		"BPCostMultiplier": 5,
-		"value": {
-			"AC": 4,
+			"AC": 2,
 			"TL": 0,
 			"turn": 0
 		}
@@ -189,43 +125,51 @@ var shipArmor = {
 	"Mk 5 armor": {
 		"BPCostMultiplier": 7,
 		"value": {
-			"AC": 5,
-			"TL": -1,
-			"turn": 0
-		}
-	},
-	"Mk 6 armor": {
-		"BPCostMultiplier": 9,
-		"value": {
-			"AC": 6,
-			"TL": -1,
+			"AC": 3,
+			"TL": 0,
 			"turn": 0
 		}
 	},
 	"Mk 7 armor": {
 		"BPCostMultiplier": 12,
 		"value": {
-			"AC": 7,
-			"TL": -1,
-			"turn": 0
-		}
-	},
-	"Mk 8 armor": {
-		"BPCostMultiplier": 15,
-		"value": {
-			"AC": 8,
-			"TL": -1,
+			"AC": 4,
+			"TL": 0,
 			"turn": 0
 		}
 	},
 	"Mk 9 armor": {
 		"BPCostMultiplier": 18,
 		"value": {
-			"AC": 9,
-			"TL": -2,
+			"AC": 5,
+			"TL": -1,
 			"turn": 1
 		}
-	}
+	},
+	"Mk 11 armor": {
+		"BPCostMultiplier": 25,
+		"value": {
+			"AC": 6,
+			"TL": -1,
+			"turn": 1
+		}
+	},
+	"Mk 13 armor": {
+		"BPCostMultiplier": 35,
+		"value": {
+			"AC": 7,
+			"TL": -2,
+			"turn": 2
+		}
+	},
+	"Mk 15 armor": {
+		"BPCostMultiplier": 45,
+		"value": {
+			"AC": 8,
+			"TL": -2,
+			"turn": 3
+		}
+	},
 };
 
 var shipComputers = {
