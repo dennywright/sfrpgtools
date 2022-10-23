@@ -320,7 +320,7 @@ var shipDefenses = {
 		"value": {
 			"TL": 5
 		}
-	}
+	},
 	"Mk 11 defenses": {
 		"cost": {
 			"BP": 33,
