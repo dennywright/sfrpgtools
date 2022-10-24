@@ -101,6 +101,7 @@ function generateShip() {
   }
 
   shipBlock.mounts = {};
+  shipBlock.mounts.total = 0;
   shipBlock.mounts.Turret = [];
   shipBlock.mounts.ForwardArc = [];
   shipBlock.mounts.AftArc = [];
@@ -113,6 +114,7 @@ function generateShip() {
       for (weaponClass in mounts[mountList[i]]) {
         //check if theres enough BP
         if (buildPoints > 0) {
+          shipBlock.mounts.total += 1;
 
           var weaponNum = mounts[mountList[i]][weaponClass];
           var randWeapons = getRandomInt(1, weaponNum);
@@ -311,10 +313,13 @@ function generateShip() {
 
 
   };
+
   //CREW
   crewSkills = ["Deception", "Persuasion", "Data", "Technology", "Intimidation", "Piloting", "Science", "Arcana"]
   expertSkill = crewSkills.selectRandom()
-  crewSkills.push("Gunnery")
+  if (shipBlock.mounts.total > 0) {
+    crewSkills.push("Gunnery")
+  }
   goodSkill = crewSkills.selectRandom()
   while (goodSkill === expertSkill) {
     goodSkill = crewSkills.selectRandom()
