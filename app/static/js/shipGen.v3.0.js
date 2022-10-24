@@ -17,9 +17,9 @@ function generateShip() {
   while (thrusterArray.length == 0) {
     var shipBlock = {};
 
-    var tier = $('#tierPicker').val().trim().replace('Tier ','').replace('Any tier',Object.keys(shipTiers).selectRandom());
-    var frame = $('#framePicker').val().trim().replace('Any frame',Object.keys(shipFrames).selectRandom());
-    var weapons = $('#weaponPicker').val().trim().replace(" armed","").replace('Any armament',["Not","Lightly","Heavily"].selectRandom());
+    var tier = $('#tierPicker').val().trim().replace('Tier ', '').replace('Any tier', Object.keys(shipTiers).selectRandom());
+    var frame = $('#framePicker').val().trim().replace('Any frame', Object.keys(shipFrames).selectRandom());
+    var weapons = $('#weaponPicker').val().trim().replace(" armed", "").replace('Any armament', ["Not", "Lightly", "Heavily"].selectRandom());
 
     shipBlock.tier = tier
     shipBlock.frame = frame
@@ -45,10 +45,10 @@ function generateShip() {
     for (var i = 0; i < shipTiers[tier].hpIncrease; i++) {
       shipBlock.HP += shipBlock.HPIncrement
     }
-    shipBlock.CT = shipBlock.HP/5
+    shipBlock.CT = shipBlock.HP / 5
 
     //POWER CORE
-    var corearray = getCores(frameObj.size,buildPoints)
+    var corearray = getCores(frameObj.size, buildPoints)
 
     var $outputArea = $(".output.area").first();
     $outputArea.empty();
@@ -62,7 +62,7 @@ function generateShip() {
     }
 
     //THRUSTERS
-    var thrusterArray = getThrusters(frameObj.size,buildPoints,powerCoreUnits)
+    var thrusterArray = getThrusters(frameObj.size, buildPoints, powerCoreUnits)
 
     if (thrusterArray.length == 0 && !$('#tierPicker').val().includes('Any')) {
       if (!$('#framePicker').val().includes('Any')) {
@@ -91,9 +91,9 @@ function generateShip() {
   mountKeys = Object.keys(mounts)
 
   if (weapons.includes("Lightly")) {
-    mountList = shuffle(["ForwardArc","Turret"]);
+    mountList = shuffle(["ForwardArc", "Turret"]);
   } else if (weapons.includes("Heavily")) {
-    mountList = shuffle(["ForwardArc","Turret","PortArc","StarboardArc","AftArc"]);
+    mountList = shuffle(["ForwardArc", "Turret", "PortArc", "StarboardArc", "AftArc"]);
   } else if (weapons.includes("Not")) {
     mountList = [];
   } else {
@@ -118,10 +118,10 @@ function generateShip() {
           var randWeapons = getRandomInt(1, weaponNum);
 
           for (var j = 0; j < randWeapons; j++) {
-            var weaponArray = getWeapons(weaponClass.capitalise(),buildPoints,powerCoreUnits)
-            if (weaponArray.length > 0){
+            var weaponArray = getWeapons(weaponClass.capitalise(), buildPoints, powerCoreUnits)
+            if (weaponArray.length > 0) {
               var weapon = weaponArray.selectRandom()
-              shipBlock.mounts[mountList[i]].push(weapon + " (" + shipWeapons[weapon].damage + ")" )
+              shipBlock.mounts[mountList[i]].push(weapon + " (" + shipWeapons[weapon].damage + ")")
               buildPoints -= shipWeapons[weapon].cost.BP
               powerCoreUnits -= shipWeapons[weapon].cost.PCU
             }
@@ -130,7 +130,7 @@ function generateShip() {
       }
     }
   }
-  var rankMod = Number(shipBlock.tier.replace('1/2','1').replace('1/3','1').replace('1/4','1'))
+  var rankMod = Number(shipBlock.tier.replace('1/2', '1').replace('1/3', '1').replace('1/4', '1'))
   var sizeMod = ACTLSizeMod[frameObj.size.toString()]
   shipBlock.AC = 10 + rankMod + sizeMod
   shipBlock.TL = 10 + rankMod + sizeMod
@@ -138,18 +138,18 @@ function generateShip() {
   shipBlock.modifiers = [];
 
   if (shipBlock.piloting != 0) {
-    shipBlock.modifiers.push(("+" + shipBlock.piloting.toString() + " Piloting").replace('+-','-'))
+    shipBlock.modifiers.push(("+" + shipBlock.piloting.toString() + " Piloting").replace('+-', '-'))
   }
 
   shipBlock.complement = getRandomInt(shipBlock.minCrew, shipBlock.maxCrew);
 
   //ESSENTIAL SYSTEMS
-  var essentialSystems = shuffle(["shipArmor","shipComputers","shipShields","shipDefenses"]);
+  var essentialSystems = shuffle(["shipArmor", "shipComputers", "shipShields", "shipDefenses"]);
 
   for (var i = 0; i < essentialSystems.length; i++) {
     if (essentialSystems[i] == "shipArmor") {
-      var armorArray = getArmor(frameObj.size,buildPoints);
-      if (armorArray.length > 0){
+      var armorArray = getArmor(frameObj.size, buildPoints);
+      if (armorArray.length > 0) {
         var armor = armorArray.selectRandom()
         shipBlock.armor = armor;
         shipBlock.systems.push(armor);
@@ -160,19 +160,19 @@ function generateShip() {
       }
 
     } else if (essentialSystems[i] == "shipComputers") {
-      var computer = getComputers(buildPoints,powerCoreUnits).selectRandom()
+      var computer = getComputers(buildPoints, powerCoreUnits).selectRandom()
       shipBlock.computer = computer;
       shipBlock.systems.push(computer + " computer");
       if (computer != "Basic") {
-        var modstring = "+" + shipComputers[computer].value.computerBonus + " any " + shipComputers[computer].value.computerNodes.toString().replace('1','one check').replace('2','two checks').replace('3','three checks').replace('4','four checks') + " per round";
+        var modstring = "+" + shipComputers[computer].value.computerBonus + " any " + shipComputers[computer].value.computerNodes.toString().replace('1', 'one check').replace('2', 'two checks').replace('3', 'three checks').replace('4', 'four checks') + " per round";
         shipBlock.modifiers.push(modstring)
       }
       buildPoints -= shipComputers[computer].cost.BP;
       powerCoreUnits -= shipComputers[computer].cost.PCU
 
     } else if (essentialSystems[i] == "shipShields") {
-      var shieldArray = getShields(buildPoints,powerCoreUnits);
-      if (shieldArray.length > 0){
+      var shieldArray = getShields(buildPoints, powerCoreUnits);
+      if (shieldArray.length > 0) {
         var shield = shieldArray.selectRandom()
         shipBlock.shield = shield;
         shipBlock.SP = shipShields[shield].value.SP;
@@ -192,8 +192,8 @@ function generateShip() {
 
     } else if (essentialSystems[i] == "shipDefenses") {
 
-      var defenseArray = getDefenses(buildPoints,powerCoreUnits);
-      if (defenseArray.length > 0){
+      var defenseArray = getDefenses(buildPoints, powerCoreUnits);
+      if (defenseArray.length > 0) {
         var defense = defenseArray.selectRandom()
         shipBlock.defense = defense;
         shipBlock.systems.push(defense);
@@ -207,12 +207,12 @@ function generateShip() {
   shipBlock.maneuverability = maneuverability[shipBlock.turn.toString()]
 
   //OTHER SYSTEMS
-  var otherSystems = shuffle(["shipDriftEngines","shipSensors","shipQuarters","shipExpansionBays"]);//,"shipExpansionBays","shipSecurity"
+  var otherSystems = shuffle(["shipDriftEngines", "shipSensors", "shipQuarters", "shipExpansionBays"]);//,"shipExpansionBays","shipSecurity"
   for (var i = 0; i < otherSystems.length; i++) {
     if (otherSystems[i] == "shipDriftEngines") {
-      var driftArray = getDriftEngine(frameObj.size,buildPoints,shipBlock.PCU);
+      var driftArray = getDriftEngine(frameObj.size, buildPoints, shipBlock.PCU);
 
-      if (driftArray.length > 0){
+      if (driftArray.length > 0) {
         var engine = driftArray.selectRandom()
         shipBlock.driftEngine = engine;
         shipBlock.driftRating = shipDriftEngines[engine].value.driftEngineRating;
@@ -222,7 +222,7 @@ function generateShip() {
     } else if (otherSystems[i] == "shipSensors") {
       var sensorArray = getSensors(buildPoints);
 
-      if (sensorArray.length > 0){
+      if (sensorArray.length > 0) {
         var sensor = sensorArray.selectRandom()
         shipBlock.systems.push(sensor + " sensors");
         buildPoints -= shipSensors[sensor].cost.BP;
@@ -238,8 +238,8 @@ function generateShip() {
     } else if (otherSystems[i] == "shipQuarters") {
       if (frameObj.size > 1) {
         var quarters = ["Common"]
-        if (buildPoints >= 2){quarters.push("Good")}
-        if (buildPoints >= 5){quarters.push("Luxurious")}
+        if (buildPoints >= 2) { quarters.push("Good") }
+        if (buildPoints >= 5) { quarters.push("Luxurious") }
 
         var quarter = quarters.selectRandom()
         shipBlock.systems.push("crew quarters (" + quarter.toLowerCase() + ")");
@@ -254,13 +254,13 @@ function generateShip() {
       var bayNumbers = [];
 
       for (var j = 0; j < remainingBays; j++) {
-        var bayArray = getExpansionBays(frameObj.size,buildPoints,powerCoreUnits,remainingBays-j);
+        var bayArray = getExpansionBays(frameObj.size, buildPoints, powerCoreUnits, remainingBays - j);
         if (bayArray.length > 0) {
           var bay = bayArray.selectRandom()
           if (bay == "Hangar bay") {
             j += 3
           }
-          if (baySelections.includes(bay)){
+          if (baySelections.includes(bay)) {
             bayNumbers[baySelections.indexOf(bay)] = bayNumbers[baySelections.indexOf(bay)] += 1;
           } else {
             baySelections.push(bay);
@@ -273,7 +273,7 @@ function generateShip() {
 
       //recover cargo bays
       if (bayNumbers.length > 0) {
-        var baySum = bayNumbers.reduce(function(acc, val) { return acc + val; });
+        var baySum = bayNumbers.reduce(function (acc, val) { return acc + val; });
       } else {
         var baySum = 0;
       }
@@ -293,16 +293,16 @@ function generateShip() {
         for (var k = 0; k < baySelections.length; k++) {
           var bayString = baySelections[k];
           if (bayString == "Guest quarters") {
-            bayString += [" (common)"," (good)"," (luxurious)"].selectRandom();
+            bayString += [" (common)", " (good)", " (luxurious)"].selectRandom();
           }
           if (bayNumbers[k] > 1) {
             if (bayString.includes(" (")) {
-              bayString = bayString.replace(' (','s (');
+              bayString = bayString.replace(' (', 's (');
               bayString += " (" + bayNumbers[k] + ")";
             } else {
               bayString += "s (" + bayNumbers[k] + ")";
             }
-            bayString = bayString.replace('boatss','boats').replace('seatings','seating');
+            bayString = bayString.replace('boatss', 'boats').replace('seatings', 'seating');
           }
           shipBlock.expansionBayArray.push(bayString.toLowerCase());
         }
@@ -312,25 +312,25 @@ function generateShip() {
 
   };
   //CREW
-  crewSkills = ["Deception","Persuasion","Data","Technology","Intimidation","Piloting","Science"]
+  crewSkills = ["Deception", "Persuasion", "Data", "Technology", "Intimidation", "Piloting", "Science", "Arcana"]
   expertSkill = crewSkills.selectRandom()
-  crewSkills.push("Gunnery") // Gunnery can't be expert so add it after we select an Expert skill
+  crewSkills.push("Gunnery")
   goodSkill = crewSkills.selectRandom()
-  while (goodSkill !== expertSkill) {
+  while (goodSkill === expertSkill) {
     goodSkill = crewSkills.selectRandom()
   }
-
   crewSkillStrings = {}
 
   for (var i = 0; i < crewSkills.length; i++) {
     if (crewSkills[i] == expertSkill) {
+      var bonus = crewSkillBonus[shipBlock.tier][2] + (crewSkills[i] == "Data" ? shipBlock.compMod : 0) + (crewSkills[i] == "Piloting" ? shipBlock.piloting : 0)
+      crewSkillStrings[crewSkills[i]] = crewSkills[i] + " +" + bonus + " (expert)"
+    } else if (crewSkills[i] == goodSkill) {
       var bonus = crewSkillBonus[shipBlock.tier][1] + (crewSkills[i] == "Data" ? shipBlock.compMod : 0) + (crewSkills[i] == "Piloting" ? shipBlock.piloting : 0)
-    if (crewSkills[i] == goodSkill) {
-      var bonus = crewSkillBonus[shipBlock.tier][1] + (crewSkills[i] == "Data" ? shipBlock.compMod : 0) + (crewSkills[i] == "Piloting" ? shipBlock.piloting : 0)
-      crewSkillStrings[crewSkills[i]] = crewSkills[i] + " +" + bonus
+      crewSkillStrings[crewSkills[i]] = crewSkills[i] + " +" + bonus + " (good)"
     } else {
       var bonus = crewSkillBonus[shipBlock.tier][0] + (crewSkills[i] == "Data" ? shipBlock.compMod : 0) + (crewSkills[i] == "Piloting" ? shipBlock.piloting : 0)
-      crewSkillStrings[crewSkills[i]] = crewSkills[i] + " +" + bonus
+      crewSkillStrings[crewSkills[i]] = crewSkills[i] + " +" + bonus + " (average)"
     }
   }
 
@@ -373,14 +373,14 @@ function generateShip() {
 
 
     if (remainingCrew > 40) {
-      var officers = [0,0,1,2,3].selectRandom()
+      var officers = [0, 0, 1, 2, 3].selectRandom()
       if (officers != 0) {
         shipBlock.captain.label += " (plus " + officers + " officer" + (officers == 1 ? "" : "s") + ")"
         remainingCrew -= officers
       }
     }
     if (remainingCrew > 40) {
-      var officers = [0,1,1].selectRandom()
+      var officers = [0, 1, 1].selectRandom()
       var crewMembers = getRandomInt(2, 10);
       if (officers != 0) {
         shipBlock.pilot.label += " (1 officer, " + crewMembers + " crew)"
@@ -389,13 +389,13 @@ function generateShip() {
     }
     var crewChunks = getThreeSplit(remainingCrew)
     if (crewChunks[0] > 1) {
-      shipBlock.engineer.label += getCrewString(crewChunks[0],"Engineer")
+      shipBlock.engineer.label += getCrewString(crewChunks[0], "Engineer")
     }
     if (crewChunks[1] > 1) {
-      shipBlock.gunner.label += getCrewString(crewChunks[1],"Gunner")
+      shipBlock.gunner.label += getCrewString(crewChunks[1], "Gunner")
     }
     if (crewChunks[2] > 1) {
-      shipBlock.scienceOfficer.label += getCrewString(crewChunks[2],"Science Officer")
+      shipBlock.scienceOfficer.label += getCrewString(crewChunks[2], "Science Officer")
     }
 
 
@@ -416,105 +416,105 @@ function generateShip() {
 }
 
 function displayShipBlock(shipBlock) {
-    //
-    //Ship Block
-    //
+  //
+  //Ship Block
+  //
 
-    textBlock = "";
-    //description
-    textBlock += '<hr>';
-    textBlock += leftAndRight('<b>' + generateName(shipBlock.frame).toUpperCase() + '</b>','<b>TIER '+ shipBlock.tier +'</b>');
-    textBlock += '<hr>';
-    //textBlock += "<div>" + shipBlock.size + " " + shipBlock.frame.toLowerCase() + "</div>";
-    textBlock += "<div style=\"padding: 10px 0px 10px 0px;\"><i>This</i> " + shipBlock.size.toLowerCase() + " " + shipBlock.frame.toLowerCase() + " <i>" + flavorText.selectRandom().toLowerCase() + "</i></div>";
-    textBlock += "<div>" + "<b>Speed</b> " + shipBlock.speed + "; " + "<b>Maneuverability</b> " + shipBlock.maneuverability.toLowerCase() + " (turn " + shipBlock.turn + ")";
-    if (shipBlock.hasOwnProperty('driftRating')) {
-      textBlock += "; <b>Drift</b> " + shipBlock.driftRating;
-    }
-    textBlock += "</div>"
-    textBlock += "<div>" + "<b>AC</b> " + shipBlock.AC + "; " + "<b>TL</b> " + shipBlock.TL + "</div>";
-    textBlock += "<div>" + "<b>HP </b>" + shipBlock.HP + "; " + "<b>DT</b> " + (shipBlock.DT == 0 ? "-" : shipBlock.DT) + "; <b>CT</b> " + shipBlock.CT + "</div>";
-    if (shipBlock.hasOwnProperty('shield')) {
-      textBlock += "<div>" + "<b>Shields</b> " + shipBlock.shield + " (forward " + shipBlock.SPForward + ", port " + shipBlock.SPSplit + ", starboard " + shipBlock.SPSplit + ", aft " + shipBlock.SPSplit + ")" + "</div>";
-    } else {
-      textBlock += "<div>" + "<b>Shields</b> none" + "</div>";
+  textBlock = "";
+  //description
+  textBlock += '<hr>';
+  textBlock += leftAndRight('<b>' + generateName(shipBlock.frame).toUpperCase() + '</b>', '<b>TIER ' + shipBlock.tier + '</b>');
+  textBlock += '<hr>';
+  //textBlock += "<div>" + shipBlock.size + " " + shipBlock.frame.toLowerCase() + "</div>";
+  textBlock += "<div style=\"padding: 10px 0px 10px 0px;\"><i>This</i> " + shipBlock.size.toLowerCase() + " " + shipBlock.frame.toLowerCase() + " <i>" + flavorText.selectRandom().toLowerCase() + "</i></div>";
+  textBlock += "<div>" + "<b>Speed</b> " + shipBlock.speed + "; " + "<b>Maneuverability</b> " + shipBlock.maneuverability.toLowerCase() + " (turn " + shipBlock.turn + ")";
+  if (shipBlock.hasOwnProperty('driftRating')) {
+    textBlock += "; <b>Drift</b> " + shipBlock.driftRating;
+  }
+  textBlock += "</div>"
+  textBlock += "<div>" + "<b>AC</b> " + shipBlock.AC + "; " + "<b>TL</b> " + shipBlock.TL + "</div>";
+  textBlock += "<div>" + "<b>HP </b>" + shipBlock.HP + "; " + "<b>DT</b> " + (shipBlock.DT == 0 ? "-" : shipBlock.DT) + "; <b>CT</b> " + shipBlock.CT + "</div>";
+  if (shipBlock.hasOwnProperty('shield')) {
+    textBlock += "<div>" + "<b>Shields</b> " + shipBlock.shield + " (forward " + shipBlock.SPForward + ", port " + shipBlock.SPSplit + ", starboard " + shipBlock.SPSplit + ", aft " + shipBlock.SPSplit + ")" + "</div>";
+  } else {
+    textBlock += "<div>" + "<b>Shields</b> none" + "</div>";
 
-    }
+  }
 
-    if (shipBlock.mounts.ForwardArc.length > 0) {
-      textBlock += "<div>" + "<b>Attack (Forward)</b> " + shipBlock.mounts.ForwardArc.join(', ') + "</div>";
-    }
-    if (shipBlock.mounts.PortArc.length > 0) {
-      textBlock += "<div>" + "<b>Attack (Port)</b> " + shipBlock.mounts.PortArc.join(', ') + "</div>";
-    }
-    if (shipBlock.mounts.StarboardArc.length > 0) {
-      textBlock += "<div>" + "<b>Attack (Starboard)</b> " + shipBlock.mounts.StarboardArc.join(', ') + "</div>";
-    }
-    if (shipBlock.mounts.AftArc.length > 0) {
-      textBlock += "<div>" + "<b>Attack (Aft)</b> " + shipBlock.mounts.AftArc.join(', ') + "</div>";
-    }
-    if (shipBlock.mounts.Turret.length > 0) {
-      textBlock += "<div>" + "<b>Attack (Turret)</b> " + shipBlock.mounts.Turret.join(', ') + "</div>";
-    }
+  if (shipBlock.mounts.ForwardArc.length > 0) {
+    textBlock += "<div>" + "<b>Attack (Forward)</b> " + shipBlock.mounts.ForwardArc.join(', ') + "</div>";
+  }
+  if (shipBlock.mounts.PortArc.length > 0) {
+    textBlock += "<div>" + "<b>Attack (Port)</b> " + shipBlock.mounts.PortArc.join(', ') + "</div>";
+  }
+  if (shipBlock.mounts.StarboardArc.length > 0) {
+    textBlock += "<div>" + "<b>Attack (Starboard)</b> " + shipBlock.mounts.StarboardArc.join(', ') + "</div>";
+  }
+  if (shipBlock.mounts.AftArc.length > 0) {
+    textBlock += "<div>" + "<b>Attack (Aft)</b> " + shipBlock.mounts.AftArc.join(', ') + "</div>";
+  }
+  if (shipBlock.mounts.Turret.length > 0) {
+    textBlock += "<div>" + "<b>Attack (Turret)</b> " + shipBlock.mounts.Turret.join(', ') + "</div>";
+  }
 
-    textBlock += "<div>" + "<b>Power Core</b> " + shipBlock.core + " (" + shipBlock.PCU + " PCU)"
-    if (shipBlock.hasOwnProperty('driftEngine')) {
-      textBlock += "; <b>Drift Engine</b> " + shipBlock.driftEngine;
-    }
-    if (shipBlock.systems.length != 0) {
-      shipBlock.systems = shipBlock.systems.sort();
-      textBlock += "; <b>Systems</b> " + shipBlock.systems.join(', ').toLowerCase()
+  textBlock += "<div>" + "<b>Power Core</b> " + shipBlock.core + " (" + shipBlock.PCU + " PCU)"
+  if (shipBlock.hasOwnProperty('driftEngine')) {
+    textBlock += "; <b>Drift Engine</b> " + shipBlock.driftEngine;
+  }
+  if (shipBlock.systems.length != 0) {
+    shipBlock.systems = shipBlock.systems.sort();
+    textBlock += "; <b>Systems</b> " + shipBlock.systems.join(', ').toLowerCase()
 
-    }
-    if (shipBlock.expansionBayArray.length > 0) {
-      shipBlock.expansionBayArray = shipBlock.expansionBayArray.sort();
-      textBlock += "; <b>Expansion Bays</b> " + shipBlock.expansionBayArray.join(', ').toLowerCase()
-    } else {
-      textBlock += "; <b>Expansion Bays</b> none";
-    }
+  }
+  if (shipBlock.expansionBayArray.length > 0) {
+    shipBlock.expansionBayArray = shipBlock.expansionBayArray.sort();
+    textBlock += "; <b>Expansion Bays</b> " + shipBlock.expansionBayArray.join(', ').toLowerCase()
+  } else {
+    textBlock += "; <b>Expansion Bays</b> none";
+  }
 
-    textBlock += "</div>"
-    textBlock += "<div>"
-    if (shipBlock.modifiers.length != 0) {
-      shipBlock.modifiers = shipBlock.modifiers.sort();
-      textBlock += "<b>Modifiers</b> " + shipBlock.modifiers.join(', ');
-    }
-    if (textBlock.includes("Modifiers")){
-      textBlock += "; "
-    }
-    textBlock += "<b>Complement</b> " + shipBlock.complement;
-    textBlock += "</div>"
+  textBlock += "</div>"
+  textBlock += "<div>"
+  if (shipBlock.modifiers.length != 0) {
+    shipBlock.modifiers = shipBlock.modifiers.sort();
+    textBlock += "<b>Modifiers</b> " + shipBlock.modifiers.join(', ');
+  }
+  if (textBlock.includes("Modifiers")) {
+    textBlock += "; "
+  }
+  textBlock += "<b>Complement</b> " + shipBlock.complement;
+  textBlock += "</div>"
 
-    textBlock += "<div><b>CREW</b></div>";
-    textBlock += '<hr>';
-    if (shipBlock.captain.bonus.length != 0) {
-      textBlock += "<div>" + "<b>" + shipBlock.captain.label + "</b> " + shipBlock.captain.bonus.join(', ') + "</div>";
-    }
-    if (shipBlock.engineer.bonus.length != 0) {
-      textBlock += "<div>" + "<b>" + shipBlock.engineer.label + "</b> " + shipBlock.engineer.bonus.join(', ') + "</div>";
-    }
-    if (shipBlock.gunner.bonus.length != 0) {
-      textBlock += "<div>" + "<b>" + shipBlock.gunner.label + "</b> " + shipBlock.gunner.bonus.join(', ') + "</div>";
-    }
-    if (shipBlock.pilot.bonus.length != 0) {
-      textBlock += "<div>" + "<b>" + shipBlock.pilot.label + "</b> " + shipBlock.pilot.bonus.join(', ') + "</div>";
-    }
-    if (shipBlock.scienceOfficer.bonus.length != 0) {
-      textBlock += "<div>" + "<b>" + shipBlock.scienceOfficer.label + "</b> " + shipBlock.scienceOfficer.bonus.join(', ') + "</div>";
-    }
+  textBlock += "<div><b>CREW</b></div>";
+  textBlock += '<hr>';
+  if (shipBlock.captain.bonus.length != 0) {
+    textBlock += "<div>" + "<b>" + shipBlock.captain.label + "</b> " + shipBlock.captain.bonus.join(', ') + "</div>";
+  }
+  if (shipBlock.engineer.bonus.length != 0) {
+    textBlock += "<div>" + "<b>" + shipBlock.engineer.label + "</b> " + shipBlock.engineer.bonus.join(', ') + "</div>";
+  }
+  if (shipBlock.gunner.bonus.length != 0) {
+    textBlock += "<div>" + "<b>" + shipBlock.gunner.label + "</b> " + shipBlock.gunner.bonus.join(', ') + "</div>";
+  }
+  if (shipBlock.pilot.bonus.length != 0) {
+    textBlock += "<div>" + "<b>" + shipBlock.pilot.label + "</b> " + shipBlock.pilot.bonus.join(', ') + "</div>";
+  }
+  if (shipBlock.scienceOfficer.bonus.length != 0) {
+    textBlock += "<div>" + "<b>" + shipBlock.scienceOfficer.label + "</b> " + shipBlock.scienceOfficer.bonus.join(', ') + "</div>";
+  }
 
-    var $StatBlock = $(".summernoteEdit").first();
-    $StatBlock.empty();
-    $StatBlock.append(textBlock);
+  var $StatBlock = $(".summernoteEdit").first();
+  $StatBlock.empty();
+  $StatBlock.append(textBlock);
 }
 
 //returns a string div with right aligned and left alignedtext on the same line
-function leftAndRight(left,right){
+function leftAndRight(left, right) {
   return '<div class="row"><div class="col-xs-8"><div>' + left + '</div></div><div class="col-xs-4"><div class="text-right">' + right + '</div></div></div>'
 }
 
 //return the cores for a particular ship size. integer
-function getCores(size,buildPoints) {
+function getCores(size, buildPoints) {
   var cores = []
   for (core in shipPowerCores) {
     if (size <= shipPowerCores[core].maxSize && size >= shipPowerCores[core].minSize && shipPowerCores[core].cost.BP <= buildPoints) {
@@ -525,7 +525,7 @@ function getCores(size,buildPoints) {
 }
 
 //return available thrusters
-function getThrusters(size,buildPoints,powerCoreUnits) {
+function getThrusters(size, buildPoints, powerCoreUnits) {
   var thrusters = []
   for (thruster in shipThrusters) {
     if (size == shipThrusters[thruster].size && shipThrusters[thruster].cost.BP <= buildPoints && shipThrusters[thruster].cost.PCU <= powerCoreUnits) {
@@ -535,7 +535,7 @@ function getThrusters(size,buildPoints,powerCoreUnits) {
   return thrusters
 }
 
-function getWeapons(weaponClass,buildPoints,powerCoreUnits) {
+function getWeapons(weaponClass, buildPoints, powerCoreUnits) {
   var weapons = []
   for (weapon in shipWeapons) {
     if (weaponClass == shipWeapons[weapon].class && shipWeapons[weapon].cost.BP <= buildPoints && shipWeapons[weapon].cost.PCU <= powerCoreUnits) {
@@ -545,17 +545,17 @@ function getWeapons(weaponClass,buildPoints,powerCoreUnits) {
   return weapons
 }
 
-function getArmor(size,buildPoints) {
+function getArmor(size, buildPoints) {
   var armors = []
   for (armor in shipArmor) {
-    if ( (shipArmor[armor].BPCostMultiplier * size ) <= buildPoints) {
+    if ((shipArmor[armor].BPCostMultiplier * size) <= buildPoints) {
       armors.push(armor);
     }
   }
   return armors
 }
 
-function getComputers(buildPoints,powerCoreUnits) {
+function getComputers(buildPoints, powerCoreUnits) {
   var computers = []
   for (computer in shipComputers) {
     if (shipComputers[computer].cost.BP <= buildPoints && shipComputers[computer].cost.PCU <= powerCoreUnits) {
@@ -565,7 +565,7 @@ function getComputers(buildPoints,powerCoreUnits) {
   return computers
 }
 
-function getShields(buildPoints,powerCoreUnits) {
+function getShields(buildPoints, powerCoreUnits) {
   var shields = []
   for (shield in shipShields) {
     if (shipShields[shield].cost.BP <= buildPoints && shipShields[shield].cost.PCU <= powerCoreUnits) {
@@ -575,7 +575,7 @@ function getShields(buildPoints,powerCoreUnits) {
   return shields
 }
 
-function getDefenses(buildPoints,powerCoreUnits) {
+function getDefenses(buildPoints, powerCoreUnits) {
   var defenses = []
   for (defense in shipDefenses) {
     if (shipDefenses[defense].cost.BP <= buildPoints && shipDefenses[defense].cost.PCU <= powerCoreUnits) {
@@ -585,20 +585,20 @@ function getDefenses(buildPoints,powerCoreUnits) {
   return defenses
 }
 
-function getDriftEngine(size,buildPoints,power) {
+function getDriftEngine(size, buildPoints, power) {
   var engines = []
   for (engine in shipDriftEngines) {
-    if ( (shipDriftEngines[engine].BPCostMultiplier * size ) <= buildPoints && size <= shipDriftEngines[engine].maxSize && power >= shipDriftEngines[engine].minPCU) {
+    if ((shipDriftEngines[engine].BPCostMultiplier * size) <= buildPoints && size <= shipDriftEngines[engine].maxSize && power >= shipDriftEngines[engine].minPCU) {
       engines.push(engine);
     }
   }
   return engines
 }
 
-function getExpansionBays(size,buildPoints,powerCoreUnits,slots) {
+function getExpansionBays(size, buildPoints, powerCoreUnits, slots) {
   var bays = []
   for (bay in shipExpansionBays) {
-    if ( size >= shipExpansionBays[bay].minSize && shipExpansionBays[bay].cost.BP <= buildPoints && shipExpansionBays[bay].cost.PCU <= powerCoreUnits && shipExpansionBays[bay].slots <= slots && bay != "Cargo hold" && bay != "Power core housing") {
+    if (size >= shipExpansionBays[bay].minSize && shipExpansionBays[bay].cost.BP <= buildPoints && shipExpansionBays[bay].cost.PCU <= powerCoreUnits && shipExpansionBays[bay].slots <= slots && bay != "Cargo hold" && bay != "Power core housing") {
       bays.push(bay);
     }
   }
@@ -615,12 +615,12 @@ function getSensors(buildPoints) {
   return sensors
 }
 
-function getCrewString(crewTotal,crewPosition) {
-  var officerNum = [1,2,3,4,5,6,7,8,9,10]
+function getCrewString(crewTotal, crewPosition) {
+  var officerNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   var crewArray = []
   if (crewTotal < 5) {
     var crewString = ""
-    if (["Engineer","Science Officer","Gunner"].includes(crewPosition)) {
+    if (["Engineer", "Science Officer", "Gunner"].includes(crewPosition)) {
       crewString += "s"
     }
     crewString += " (" + crewTotal + ")"
@@ -628,8 +628,8 @@ function getCrewString(crewTotal,crewPosition) {
   } else {
     for (var i = 0; i < officerNum.length; i++) {
       crew = crewTotal - officerNum[i]
-      if (crew % officerNum[i] == 0 && crew > 0 && crew/officerNum[i] > 3) {
-        crewArray.push([officerNum[i],crew/officerNum[i]])
+      if (crew % officerNum[i] == 0 && crew > 0 && crew / officerNum[i] > 3) {
+        crewArray.push([officerNum[i], crew / officerNum[i]])
       }
     }
     if (crewArray.length > 1) {
@@ -637,7 +637,7 @@ function getCrewString(crewTotal,crewPosition) {
     }
     var selected = crewArray.selectRandom()
     var crewString = ""
-    if (["Engineer","Science Officer","Gunner"].includes(crewPosition)) {
+    if (["Engineer", "Science Officer", "Gunner"].includes(crewPosition)) {
       crewString += "s"
     }
     if (selected[0] == 0) {
@@ -648,14 +648,14 @@ function getCrewString(crewTotal,crewPosition) {
   return crewString
 }
 
-function getThreeSplit (input) {
+function getThreeSplit(input) {
 
   var first = Math.round(input / 3)
   var second = input - first - first
   var third = input - first - second
-  var split = [first,second,third]
+  var split = [first, second, third]
   if (split[0] > 4) {
-    mover = getRandomInt(1, Math.round(split[0]/2));
+    mover = getRandomInt(1, Math.round(split[0] / 2));
     split[0] = split[0] - mover;
     split[2] = split[2] + mover;
   }
@@ -676,11 +676,11 @@ function generateName(type) {
 }
 
 function generateClass(type) {
-   var classShip = shipNames.Ships[type].Type.selectRandom()
-   if (classShip != type) {
-     classShip += " (" + type + ")"
-   }
-   return classShip.toLowerCase()
+  var classShip = shipNames.Ships[type].Type.selectRandom()
+  if (classShip != type) {
+    classShip += " (" + type + ")"
+  }
+  return classShip.toLowerCase()
 }
 
 
@@ -690,18 +690,18 @@ function editBlock() {
   $('.btn-edit').hide();
   $('.btn-image').hide();
   $('.btn-print').hide();
-  $('#overEdit').css({'margin-left': '0em', 'margin-right': '0em'});
+  $('#overEdit').css({ 'margin-left': '0em', 'margin-right': '0em' });
   $('.summernoteEdit').summernote({
     focus: true,
     toolbar: [
       // [groupName, [list of button]]
       ['style', ['bold', 'italic', 'underline', 'superscript', 'subscript', 'clear', 'color']],
       ['fontsize', ['fontsize']],
-      ['insert', ['link','hr','picture']],
-      ['misc', ['fullscreen','codeview',]],
+      ['insert', ['link', 'hr', 'picture']],
+      ['misc', ['fullscreen', 'codeview',]],
     ],
     print: {
-        'stylesheetUrl': 'static/css/print.css'
+      'stylesheetUrl': 'static/css/print.css'
     }
   });
 };
@@ -712,7 +712,7 @@ function saveBlock() {
   $('.btn-edit').show();
   $('.btn-image').show();
   $('.btn-print').show();
-  $('#overEdit').css({'margin-left': '4.5em', 'margin-right': '1em'});
+  $('#overEdit').css({ 'margin-left': '4.5em', 'margin-right': '1em' });
   var markup = $('.summernoteEdit').summernote('code');
   $('.summernoteEdit').summernote('destroy');
 };
@@ -723,8 +723,8 @@ function blockToImage() {
 
   html2canvas(document.querySelector("#capture")).then(canvas => {
 
-    canvas.toBlob(function(blob) {
-    	saveAs(blob, "shipblock.png");
+    canvas.toBlob(function (blob) {
+      saveAs(blob, "shipblock.png");
     });
 
   });
@@ -732,7 +732,7 @@ function blockToImage() {
 
 //print the statblock
 function printBlock() {
-    window.print();
+  window.print();
 };
 
 //returns a shuffled array
@@ -756,7 +756,7 @@ function shuffle(array) {
 }
 
 //runs when page is loaded
-$( document ).ready(function() {
+$(document).ready(function () {
   //initialise pickers
   $('.selectpicker').selectpicker();
 });

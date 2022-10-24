@@ -94,15 +94,15 @@ var shipTiers = {
 };
 
 var shipSizes = [
-  null,
-  "Tiny",
-  "Small",
-  "Medium",
-  "Large",
-  "Huge",
-  "Gargantuan",
-  "Colossal",
-  "Supercolossal"
+	null,
+	"Tiny",
+	"Small",
+	"Medium",
+	"Large",
+	"Huge",
+	"Gargantuan",
+	"Colossal",
+	"Supercolossal"
 ];
 
 var shipArmor = {
@@ -320,7 +320,7 @@ var shipDefenses = {
 		"value": {
 			"TL": 5
 		}
-	}
+	},
 	"Mk 11 defenses": {
 		"cost": {
 			"BP": 33,
@@ -401,7 +401,7 @@ var shipExpansionBays = {
 		},
 		"description": "An arcane laboratory contains all the tools and space necessary to craft magic items (see page 235), though the crafter must still provide the necessary raw materials. Such a laboratory reduces the crafting time by half.",
 		"minSize": 1,
-		"slots":1
+		"slots": 1
 	},
 	"Cargo hold": {
 		"cost": {
@@ -410,7 +410,7 @@ var shipExpansionBays = {
 		},
 		"description": "Unconverted expansion bays count as cargo holds. A cargo hold can contain approximately 25 tons of goods, with no item being larger than Large. A starship with multiple cargo holds can hold larger objects; usually 4 contiguous cargo holds are required to hold Huge objects and 8 for Gargantuan objects. These size restrictions can be overridden at the GM's discretion.",
 		"minSize": 1,
-		"slots":1
+		"slots": 1
 	},
 	"Escape pods": {
 		"cost": {
@@ -419,7 +419,7 @@ var shipExpansionBays = {
 		},
 		"description": "Escape pods give the crew of a severely damaged or destroyed starship a way to avoid imminent death. An escape pod fits one Medium or smaller creature and has enough supplies and life-support capacity for that creature to survive for 7 days. It is also fitted with a distress beacon that is easily identified by long-range scanners. An escape pod has heat shields that allow it to crash-land on a planet with an atmosphere, but no means of propulsion. A single expansion bay can be converted into six escape pods.",
 		"minSize": 1,
-		"slots":1
+		"slots": 1
 	},
 	"Guest quarters": {
 		"cost": {
@@ -428,7 +428,7 @@ var shipExpansionBays = {
 		},
 		"description": "Starships that function as passenger vessels require spaces apart from their crew quarters for their guests to sleep. A single expansion bay can be converted into common quarters (usually simple bunks or hammocks) for six passengers, good quarters (usually a comfortable bed, a desk with a chair, and a small set of drawers) for four passengers, or luxurious quarters (usually a large bed, a wardrobe, a couch, a desk with a nice chair, and a private washroom) for two passengers.",
 		"minSize": 1,
-		"slots":1
+		"slots": 1
 	},
 	"Hangar bay": {
 		"cost": {
@@ -437,7 +437,7 @@ var shipExpansionBays = {
 		},
 		"description": "A hangar bay can be installed only in a Gargantuan or larger starship and takes up 4 expansion bays. A hangar bay provides a place for up to 8 Tiny starships to dock.",
 		"minSize": 6,
-		"slots":4
+		"slots": 4
 	},
 	"Life Science lab": {
 		"cost": {
@@ -446,7 +446,7 @@ var shipExpansionBays = {
 		},
 		"description": "A science lab contains scientific apparatuses and other laboratory equipment to aid in the research of certain topics. A general science lab provides a +1 circumstance bonus to Life Science and Physical Science checks (and is called a general science lab), a life science lab provides a +2 circumstance bonus to Life Science checks, and a physical science lab provides a +2 circumstance bonus to Physical Science checks. The lab type is chosen when the expansion bay is converted.",
 		"minSize": 1,
-		"slots":1
+		"slots": 1
 	},
 	"Life boats": {
 		"cost": {
@@ -455,7 +455,7 @@ var shipExpansionBays = {
 		},
 		"description": "A life boat is a more sophisticated version of an escape pod. It has room for one Large creature, or two Medium or smaller creatures, and enough supplies to last those passengers 15 days (or 30 days of supplies for one Medium or smaller creature). While it has the same kind of distress beacon as an escape pod, a life boat also has an on-board computer that automatically detects the nearest hospitable celestial body and minimal thrusters to get the craft there (though a life boat can't participate in starship combat). A single expansion bay can be converted into two life boats.",
 		"minSize": 1,
-		"slots":1
+		"slots": 1
 	},
 	"Medical bay": {
 		"cost": {
@@ -464,7 +464,7 @@ var shipExpansionBays = {
 		},
 		"description": "A medical bay functions as a medical lab (see page 220).",
 		"minSize": 1,
-		"slots":1
+		"slots": 1
 	},
 	"Passenger seating": {
 		"cost": {
@@ -473,7 +473,7 @@ var shipExpansionBays = {
 		},
 		"description": "An expansion bay can be converted into rows of seating for passengers at no cost. A single expansion bay can hold seating for 16 Medium passengers (though seats can be built for larger creatures). This upgrade is appropriate only for taking many passengers on short trips; starships on journeys lasting multiple days should instead have guest quarters installed.",
 		"minSize": 1,
-		"slots":1
+		"slots": 1
 	},
 	"Physical Science lab": {
 		"cost": {
@@ -482,7 +482,7 @@ var shipExpansionBays = {
 		},
 		"description": "A science lab contains scientific apparatuses and other laboratory equipment to aid in the research of certain topics. A general science lab provides a +1 circumstance bonus to Life Science and Physical Science checks (and is called a general science lab), a life science lab provides a +2 circumstance bonus to Life Science checks, and a physical science lab provides a +2 circumstance bonus to Physical Science checks. The lab type is chosen when the expansion bay is converted.",
 		"minSize": 1,
-		"slots":1
+		"slots": 1
 	},
 	"Power core housing": {
 		"cost": {
@@ -491,7 +491,7 @@ var shipExpansionBays = {
 		},
 		"description": "An expansion bay can be set aside for an additional power core (which must be purchased separately) and the associated wiring and safety apparatuses. A power core housing can be installed on only a Medium or larger starship.",
 		"minSize": 3,
-		"slots":1
+		"slots": 1
 	},
 	"Recreation suite (HAC)": {
 		"cost": {
@@ -500,7 +500,7 @@ var shipExpansionBays = {
 		},
 		"description": "A recreation suite includes entertainments that help the crew (or passengers) relax and blow off steam. These diversions can be wide-ranging, with some consuming more PCU than others (see the table on page 300). Example recreation suites include a gym, sparring arena, or other exercise area; a trivid den or other comfortable space in which to consume passive entertainment; or a holographic amusement chamber (or HAC), vidgame arcade, or other high-tech interactive entertainment center.",
 		"minSize": 1,
-		"slots":1
+		"slots": 1
 	},
 	"Recreation suite (gym)": {
 		"cost": {
@@ -509,7 +509,7 @@ var shipExpansionBays = {
 		},
 		"description": "A recreation suite includes entertainments that help the crew (or passengers) relax and blow off steam. These diversions can be wide-ranging, with some consuming more PCU than others (see the table on page 300). Example recreation suites include a gym, sparring arena, or other exercise area; a trivid den or other comfortable space in which to consume passive entertainment; or a holographic amusement chamber (or HAC), vidgame arcade, or other high-tech interactive entertainment center.",
 		"minSize": 1,
-		"slots":1
+		"slots": 1
 	},
 	"Recreation suite (trivid den)": {
 		"cost": {
@@ -518,7 +518,7 @@ var shipExpansionBays = {
 		},
 		"description": "A recreation suite includes entertainments that help the crew (or passengers) relax and blow off steam. These diversions can be wide-ranging, with some consuming more PCU than others (see the table on page 300). Example recreation suites include a gym, sparring arena, or other exercise area; a trivid den or other comfortable space in which to consume passive entertainment; or a holographic amusement chamber (or HAC), vidgame arcade, or other high-tech interactive entertainment center.",
 		"minSize": 1,
-		"slots":1
+		"slots": 1
 	},
 	"Science lab": {
 		"cost": {
@@ -527,7 +527,7 @@ var shipExpansionBays = {
 		},
 		"description": "A science lab contains scientific apparatuses and other laboratory equipment to aid in the research of certain topics. A general science lab provides a +1 circumstance bonus to Life Science and Physical Science checks (and is called a general science lab), a life science lab provides a +2 circumstance bonus to Life Science checks, and a physical science lab provides a +2 circumstance bonus to Physical Science checks. The lab type is chosen when the expansion bay is converted.",
 		"minSize": 1,
-		"slots":1
+		"slots": 1
 	},
 	"Sealed environment chamber": {
 		"cost": {
@@ -536,7 +536,7 @@ var shipExpansionBays = {
 		},
 		"description": "Occasionally, a starship will need to host an alien or other creature whose biology is radically different from that of the crew. The passenger might be able to breathe only methane gas or can survive in only below-freezing temperatures. In such a case, a sealed environment chamber is required for the passenger to remain comfortable (and alive).",
 		"minSize": 1,
-		"slots":1
+		"slots": 1
 	},
 	"Shuttle bay": {
 		"cost": {
@@ -545,7 +545,7 @@ var shipExpansionBays = {
 		},
 		"description": "A shuttle bay can be installed only in a Huge or larger starship and takes up two expansion bays. A shuttle bay provides a place for a Small or smaller starship to dock.",
 		"minSize": 5,
-		"slots":1
+		"slots": 1
 	},
 	"Smuggler compartment": {
 		"cost": {
@@ -554,7 +554,7 @@ var shipExpansionBays = {
 		},
 		"description": "Smuggler compartments are cargo holds hidden behind false bulkheads and are shielded from most scanning, allowing a starship equipped with them to haul illegal goods without detection. A smuggler compartment can contain 10 tons of goods, with no item being larger than Medium. A creature on the starship must succeed at a DC 20 Perception check to detect a basic smuggler compartment on the starship. A creature scanning the starship must succeed at a DC 20 Computers check to detect one (this additional check is part of the science officer's scan action in starship combat; see page 325). For each Build Point spent over the base cost, these DCs increase by 5 (maximum DC 50), though the amount of power the compartment uses also increases by 1.",
 		"minSize": 1,
-		"slots":1
+		"slots": 1
 	},
 	"Synthesis bay": {
 		"cost": {
@@ -563,7 +563,7 @@ var shipExpansionBays = {
 		},
 		"description": "A synthesis bay contains all the space and tools required to craft drugs, medicine, or poison (see page 235), though the crafter must still provide the necessary raw materials. A synthesis bay reduces the crafting time by half.",
 		"minSize": 1,
-		"slots":1
+		"slots": 1
 	},
 	"Tech workshop": {
 		"cost": {
@@ -572,7 +572,7 @@ var shipExpansionBays = {
 		},
 		"description": "A tech workshop contains all the space and tools necessary to craft technological items (see page 235), though the crafter must still provide the necessary raw materials. Such a workshop reduces the crafting time by half.",
 		"minSize": 1,
-		"slots":1
+		"slots": 1
 	},
 	"Brig": {
 		"cost": {
@@ -1432,23 +1432,23 @@ var shipPowerCores = {
 };
 
 var shipQuarters = {
-  "Good": {
-    "cost": {
-    	"BP": 2
-    },
-    "description": "Good crew quarters are a bit more upscale than common crew quarters. They consist of dormitory-style rooms that can hold one or two small beds (larger starships usually require lower-ranking crew members to share these quarters) and sometimes a personal closet or drawer space for each occupant. Good crew quarters also include one or two shared bathrooms with multiple sinks and shower stalls, and a dining space with an attached galley. Crews of larger starships eat in this dining space in shifts."
-  },
-  "Common": {
-    "cost": {
-      "BP": 0
-    },
-    "description": "Common crew quarters are the most basic type. They consist of simple bunks (sometimes folding out from the side of a hallway) or other similarly austere places to rest. Crew members who sleep in common quarters usually keep their personal possessions in a footlocker. Common crew quarters also include a communal bathroom (which includes a military-style shower) and a tiny galley (big enough to prepare only the most basic of meals). Starships with crews numbering in the dozens or hundreds often have massive barracks where crew members sleep in shifts."
-  },
-  "Luxurious": {
-    "cost": {
-      "BP": 5
-    },
-    "description": "Luxurious crew quarters are the pinnacle of comfort. They consist of private rooms for each crew member, with personal bathrooms (including showers with high water pressure) and furnishings that match the resident's tastes. Some luxurious crew quarters also feature a kitchenette, gaming areas, or intimate meeting spaces."
+	"Good": {
+		"cost": {
+			"BP": 2
+		},
+		"description": "Good crew quarters are a bit more upscale than common crew quarters. They consist of dormitory-style rooms that can hold one or two small beds (larger starships usually require lower-ranking crew members to share these quarters) and sometimes a personal closet or drawer space for each occupant. Good crew quarters also include one or two shared bathrooms with multiple sinks and shower stalls, and a dining space with an attached galley. Crews of larger starships eat in this dining space in shifts."
+	},
+	"Common": {
+		"cost": {
+			"BP": 0
+		},
+		"description": "Common crew quarters are the most basic type. They consist of simple bunks (sometimes folding out from the side of a hallway) or other similarly austere places to rest. Crew members who sleep in common quarters usually keep their personal possessions in a footlocker. Common crew quarters also include a communal bathroom (which includes a military-style shower) and a tiny galley (big enough to prepare only the most basic of meals). Starships with crews numbering in the dozens or hundreds often have massive barracks where crew members sleep in shifts."
+	},
+	"Luxurious": {
+		"cost": {
+			"BP": 5
+		},
+		"description": "Luxurious crew quarters are the pinnacle of comfort. They consist of private rooms for each crew member, with personal bathrooms (including showers with high water pressure) and furnishings that match the resident's tastes. Some luxurious crew quarters also feature a kitchenette, gaming areas, or intimate meeting spaces."
 	}
 }
 
@@ -2827,33 +2827,33 @@ var shipWeapons = {
 		"type": "Direct",
 		"source": "ds"
 	},
-	
+
 };
 
 var crewSkillBonus = {
-    "1/4":  [3,4,5],
-    "1/3":  [3,4,5],
-    "1/2":  [3,4,5],
-    "1":    [3,4,5],
-    "2":    [3,4,5],
-    "3":    [3,4,5],
-    "4":    [3,4,5],
-    "5":    [4,6,9],
-    "6":    [4,6,9],
-    "7":    [4,6,9],
-    "8":    [4,6,9],
-    "9":    [4,6,9],
-    "10":   [4,6,9],
-    "11":   [5,8,13],
-    "12":   [5,8,13],
-    "13":   [5,8,13],
-    "14":   [5,8,13],
-    "15":   [5,8,13],
-    "16":   [6,9,16],
-    "17":   [6,9,16],
-    "18":   [6,9,16],
-    "19":   [6,9,16],
-    "20":   [6,9,16]
+	"1/4": [3, 4, 5],
+	"1/3": [3, 4, 5],
+	"1/2": [3, 4, 5],
+	"1": [3, 4, 5],
+	"2": [3, 4, 5],
+	"3": [3, 4, 5],
+	"4": [3, 4, 5],
+	"5": [4, 6, 9],
+	"6": [4, 6, 9],
+	"7": [4, 6, 9],
+	"8": [4, 6, 9],
+	"9": [4, 6, 9],
+	"10": [4, 6, 9],
+	"11": [5, 8, 13],
+	"12": [5, 8, 13],
+	"13": [5, 8, 13],
+	"14": [5, 8, 13],
+	"15": [5, 8, 13],
+	"16": [6, 9, 16],
+	"17": [6, 9, 16],
+	"18": [6, 9, 16],
+	"19": [6, 9, 16],
+	"20": [6, 9, 16]
 };
 
 var ACTLSizeMod = {
@@ -2881,56 +2881,56 @@ var maneuverability = {
 var shipNames = {
 	Ships: {
 		"Battleship": {
-			"Type": ["Battleship","Siege Frigate","Heavy Gunship","Defender","Interdictor","Stealth Ship","Frigate","Troopship","Banner Ship","Anti-Strikecraft","Desolater"]
+			"Type": ["Battleship", "Siege Frigate", "Heavy Gunship", "Defender", "Interdictor", "Stealth Ship", "Frigate", "Troopship", "Banner Ship", "Anti-Strikecraft", "Desolater"]
 		},
 		"Bulk Freighter": {
-			"Type": ["Bulk Freighter","Bulk Hauler","Bulk Freight","Construction Vessel","Cruiseship","Mining Vessel","Trade Ship","Fuel Hauler","Tanker","Asteroid Tug","Mobile Refinery"]
+			"Type": ["Bulk Freighter", "Bulk Hauler", "Bulk Freight", "Construction Vessel", "Cruiseship", "Mining Vessel", "Trade Ship", "Fuel Hauler", "Tanker", "Asteroid Tug", "Mobile Refinery"]
 		},
 		"Carrier": {
-			"Type": ["Carrier","Fleet Carrier","Repair Barge","Heavy Salvage","Hospital Ship","Supply Ship","Assault Carrier","Prison Ship","Defensive Support","Mobile Command Center"]
+			"Type": ["Carrier", "Fleet Carrier", "Repair Barge", "Heavy Salvage", "Hospital Ship", "Supply Ship", "Assault Carrier", "Prison Ship", "Defensive Support", "Mobile Command Center"]
 		},
 		"Cruiser": {
-			"Type": ["Cruiser","Corvette","Tourer","Medium Gunship","Long-range Transport","Defense Platform","Missile Cruiser","Warship","Command Ship","Artillery","Envoy Cruiser"]
+			"Type": ["Cruiser", "Corvette", "Tourer", "Medium Gunship", "Long-range Transport", "Defense Platform", "Missile Cruiser", "Warship", "Command Ship", "Artillery", "Envoy Cruiser"]
 		},
 		"Destroyer": {
-			"Type": ["Destroyer","Expedition","Gunship","Personnel Carrier","Heavy Recon","Military Transport","Patrol Craft","Enforcer","Fast Attack Craft","Planetary Defense Boat","Scout Frigate"]
+			"Type": ["Destroyer", "Expedition", "Gunship", "Personnel Carrier", "Heavy Recon", "Military Transport", "Patrol Craft", "Enforcer", "Fast Attack Craft", "Planetary Defense Boat", "Scout Frigate"]
 		},
 		"Dreadnought": {
-			"Type": ["Dreadnought","Capital Ship","Battle Platform","Superdreadnought"]
+			"Type": ["Dreadnought", "Capital Ship", "Battle Platform", "Superdreadnought"]
 		},
 		"Explorer": {
-			"Type": ["Explorer","Diplomatic Barge","Science vessel","Pathfinder","Pleasure Craft","Planet Hopper","Consulor Ship","Light Starship","Surveyor","Pathfinder"]
+			"Type": ["Explorer", "Diplomatic Barge", "Science vessel", "Pathfinder", "Pleasure Craft", "Planet Hopper", "Consulor Ship", "Light Starship", "Surveyor", "Pathfinder"]
 		},
 		"Fighter": {
-			"Type": ["Fighter","Snub Fighter","Escort Fighter","Medium Fighter","Assault Ship","Starfighter","Attack Fighter","Mobile Suit","Strike Craft"]
+			"Type": ["Fighter", "Snub Fighter", "Escort Fighter", "Medium Fighter", "Assault Ship", "Starfighter", "Attack Fighter", "Mobile Suit", "Strike Craft"]
 		},
 		"Heavy Freighter": {
-			"Type": ["Heavy Freighter","Heavy Hauler","Trash Hauler","Freighter","Refueller","Heavy Salvage","Treasury Ship","Ice Hauler","Ore Hauler","Merchant Ship","Data Transfer"]
+			"Type": ["Heavy Freighter", "Heavy Hauler", "Trash Hauler", "Freighter", "Refueller", "Heavy Salvage", "Treasury Ship", "Ice Hauler", "Ore Hauler", "Merchant Ship", "Data Transfer"]
 		},
 		"Interceptor": {
-			"Type": ["Interceptor","Superiority Fighter","Rapid Assault Craft","Stealh Bomber","Scout Ship","Guard Ship","Approach Craft","Orbital Strikecraft","Hunter"]
+			"Type": ["Interceptor", "Superiority Fighter", "Rapid Assault Craft", "Stealh Bomber", "Scout Ship", "Guard Ship", "Approach Craft", "Orbital Strikecraft", "Hunter"]
 		},
 		"Light Freighter": {
-			"Type": ["Light Freighter","Freighter","Cargo Hauler","Spacetug","Salvage","Cargo Lift","Delivery Ship","Maintenance Hauler","Mining Scow","Trader","Blockade Runner"]
+			"Type": ["Light Freighter", "Freighter", "Cargo Hauler", "Spacetug", "Salvage", "Cargo Lift", "Delivery Ship", "Maintenance Hauler", "Mining Scow", "Trader", "Blockade Runner"]
 		},
 		"Racer": {
-			"Type": ["Racer","Sport Model","Recon","Data Hauler","News Chaser","Personal Transport","Courier","Space Pod","Starskiff","Navigator","Herald"]
+			"Type": ["Racer", "Sport Model", "Recon", "Data Hauler", "News Chaser", "Personal Transport", "Courier", "Space Pod", "Starskiff", "Navigator", "Herald"]
 		},
 		"Shuttle": {
-			"Type": ["Shuttle", "Dropship","Snubship","Bomber","Heavy Fighter","Med Evac","Landing Craft","Rescue Runner","Boarding Craft","Repair Tug","Police Cruiser"]
+			"Type": ["Shuttle", "Dropship", "Snubship", "Bomber", "Heavy Fighter", "Med Evac", "Landing Craft", "Rescue Runner", "Boarding Craft", "Repair Tug", "Police Cruiser"]
 		},
 		"Transport": {
-			"Type": ["Transport","Passenger Shuttle","Constant G Transport","Luxury Yacht","Orbit Hopper","Passenger Liner","Slave Ship","Holiday Cruiser","Prison Transport"]
+			"Type": ["Transport", "Passenger Shuttle", "Constant G Transport", "Luxury Yacht", "Orbit Hopper", "Passenger Liner", "Slave Ship", "Holiday Cruiser", "Prison Transport"]
 		},
 		"Base Ship": {
-			"Type": ["Base Ship","Mothership","Command Ship","Battle Platform"]
+			"Type": ["Base Ship", "Mothership", "Command Ship", "Battle Platform"]
 		},
 		"Ultranought": {
-			"Type": ["Ultranought","Planet Cracker","World Gouger","Starcutter"]
+			"Type": ["Ultranought", "Planet Cracker", "World Gouger", "Starcutter"]
 		}
 	},
-	"Word": ["Space","Blessed","Carbon","Compact","Brutal","Burning","Crimson","Cryptic","Crystal","Defiant","Devil's","Dying","Empty","Enduring","Fallen","Final","First","Forgotten","Frozen","Glass","Hot","Lazy","Lost","Patient","Purple","Red","Rotting","Silent","Soaring","Stone","Twisted","Basic","Cosmic","Rowdy","Efficient","Friendly","Furious","Galactic","Hardened","Heavenly","Hectic","Infinite","Intergalactic","Interstellar","Magnificent","Meaty","Mechanised","Mithril","Perfect","Precision","Radiant","Spicy","Superior","Synthetic","Ultra","Vorpal","Wrought","Silver","Steel","Swift","Titanium","Golarions","Interplanetary","Celestial","Dark","Bleeding","Wrathful","Vengeful","Lofty","Sunrise","Black","White","Amazing","Golden","Happy","Jolly","Valiant","Imperial","Astro","Blazing","Grinning","Lunar","Silent","Mighty","Royal","Blazing","Junk","Solar","Ebon","Flying","Millenium","Hammerhead","Night","Champion","Destiny","Night","Interstellar","Knight","Epsilon","Pursuit","Elysium","Lambda","Orbital","Starhive","Ringworks","Atech","Weyland","Idaran","Universal"],
-	"Words":["Oblivion","Bard","Boy","Odyssey","Asteroid","Compulsion","Constellation","D20","Defender","Delivery","Elite","Ghost","Hornet","Infinity","Jewel","Massacre","Matter","Nutrition","Paragon","Platypus","Protector","Breath","Crown","Daze","Dream","Engine","Fall","Fear","Fog","Grave","Hydra","Hymn","Jester","Justice","King","Line","Law","Moon","Priest","Prophet","Pyre","Rain","Serpent","Shroud","Smoke","Stroke","Summer","Sword","Thorn","Vanguard","Seeker","Ranger","Shadow","Starburst","Vacation","Wizard","Star","Retailator","Hopper","Subjugator","Rapture","Harbinger","Tenacity","Destiny","Jumper","Arrow","Andromeda","Centurai","Gemini","Jupiter","Orion","Vega","Fury","Nemesis","Plague","Scourge","Scorpion","Threat","Shadow","Wrath","Dagger","Dragon","Fox","Laser","Nova","Eye","Blossom","Flower","Bounty","Typhoon","Explorer","Unicorn","Claw","Demon","Doom","Fortune","Kiss","Maiden","Passion","Swan","Fist","Hulk","Sailer","Hawk","Clairvoyance","Tyrant","Titan","Falcon","Comet","Spirit","Wings","Bear","Terror","Dove","Expedition","Doshko","Hammer","Dawn","Avenger","Trader"]
+	"Word": ["Space", "Blessed", "Carbon", "Compact", "Brutal", "Burning", "Crimson", "Cryptic", "Crystal", "Defiant", "Devil's", "Dying", "Empty", "Enduring", "Fallen", "Final", "First", "Forgotten", "Frozen", "Glass", "Hot", "Lazy", "Lost", "Patient", "Purple", "Red", "Rotting", "Silent", "Soaring", "Stone", "Twisted", "Basic", "Cosmic", "Rowdy", "Efficient", "Friendly", "Furious", "Galactic", "Hardened", "Heavenly", "Hectic", "Infinite", "Intergalactic", "Interstellar", "Magnificent", "Meaty", "Mechanised", "Mithril", "Perfect", "Precision", "Radiant", "Spicy", "Superior", "Synthetic", "Ultra", "Vorpal", "Wrought", "Silver", "Steel", "Swift", "Titanium", "Golarions", "Interplanetary", "Celestial", "Dark", "Bleeding", "Wrathful", "Vengeful", "Lofty", "Sunrise", "Black", "White", "Amazing", "Golden", "Happy", "Jolly", "Valiant", "Imperial", "Astro", "Blazing", "Grinning", "Lunar", "Silent", "Mighty", "Royal", "Blazing", "Junk", "Solar", "Ebon", "Flying", "Millenium", "Hammerhead", "Night", "Champion", "Destiny", "Night", "Interstellar", "Knight", "Epsilon", "Pursuit", "Elysium", "Lambda", "Orbital", "Starhive", "Ringworks", "Atech", "Weyland", "Idaran", "Universal"],
+	"Words": ["Oblivion", "Bard", "Boy", "Odyssey", "Asteroid", "Compulsion", "Constellation", "D20", "Defender", "Delivery", "Elite", "Ghost", "Hornet", "Infinity", "Jewel", "Massacre", "Matter", "Nutrition", "Paragon", "Platypus", "Protector", "Breath", "Crown", "Daze", "Dream", "Engine", "Fall", "Fear", "Fog", "Grave", "Hydra", "Hymn", "Jester", "Justice", "King", "Line", "Law", "Moon", "Priest", "Prophet", "Pyre", "Rain", "Serpent", "Shroud", "Smoke", "Stroke", "Summer", "Sword", "Thorn", "Vanguard", "Seeker", "Ranger", "Shadow", "Starburst", "Vacation", "Wizard", "Star", "Retailator", "Hopper", "Subjugator", "Rapture", "Harbinger", "Tenacity", "Destiny", "Jumper", "Arrow", "Andromeda", "Centurai", "Gemini", "Jupiter", "Orion", "Vega", "Fury", "Nemesis", "Plague", "Scourge", "Scorpion", "Threat", "Shadow", "Wrath", "Dagger", "Dragon", "Fox", "Laser", "Nova", "Eye", "Blossom", "Flower", "Bounty", "Typhoon", "Explorer", "Unicorn", "Claw", "Demon", "Doom", "Fortune", "Kiss", "Maiden", "Passion", "Swan", "Fist", "Hulk", "Sailer", "Hawk", "Clairvoyance", "Tyrant", "Titan", "Falcon", "Comet", "Spirit", "Wings", "Bear", "Terror", "Dove", "Expedition", "Doshko", "Hammer", "Dawn", "Avenger", "Trader"]
 };
 
 var flavorText = [
