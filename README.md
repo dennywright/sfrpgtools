@@ -17,5 +17,4 @@ node app.js
 ```
 
 # Credits
-Based on code for the Starfinder Tools App [sfrpgtools](https://sfrpgtools.com). Written in Javascript. Hosted with
-[Flask](http://flask.pocoo.org/).
+Based on code for the Starfinder Tools App [sfrpgtools](https://sfrpgtools.com).
