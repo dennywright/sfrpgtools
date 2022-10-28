@@ -1,22 +1,21 @@
 # Starforger Tools App
-Based on [sfrpgtools](https://sfrpgtools), this converts the Starship Generation to D&D 5e and Dark Matter
-
-# Starfinder Tools App
-Code for [sfrpgtools](https://sfrpgtools.com). Written in javascript. Hosted with
-[Flask](http://flask.pocoo.org/).
+This is a Starship Generator App for D&D 5e and Dark Matter
 
 ## Development
-- Setup python 3.8.14
+- Setup nodejs
 ```
-pyenv install 3.8.14
-pyenv local 3.8.14
-pip install --upgrade pip
+nodenv install 18.7.0
+nodenv local 18.7.0
 ```
 - Install the requirements:
 ```
-pip install -r requirements.txt
+npm install ...
 ```
 - Run the server:
 ```
-python run.py
+node app.js
 ```
+
+# Credits
+Based on code for the Starfinder Tools App [sfrpgtools](https://sfrpgtools.com). Written in Javascript. Hosted with
+[Flask](http://flask.pocoo.org/).
