@@ -105,3 +105,6 @@ pyvenv.cfg
 .fleet/
 .idea/
 .vscode/
+
+# node.js
+node_modules/

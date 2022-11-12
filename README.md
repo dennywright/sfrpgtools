@@ -9,11 +9,12 @@ nodenv local 18.7.0
 ```
 - Install the requirements:
 ```
-npm install ...
+npm init -y
+npm install express
 ```
 - Run the server:
 ```
-node app.js
+node .
 ```
 
 # Credits

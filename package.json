@@ -1,0 +1,23 @@
+{
+  "name": "sfrpgtools",
+  "version": "1.0.0",
+  "description": "This is a Starship Generator App for D&D 5e and Dark Matter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dennywright/sfrpgtools.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dennywright/sfrpgtools/issues"
+  },
+  "homepage": "https://github.com/dennywright/sfrpgtools#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
