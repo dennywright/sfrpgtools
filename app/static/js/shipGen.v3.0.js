@@ -1,3 +1,5 @@
+var shipBlock = {};
+
 function clearOutput() {
   var $editArea = $(".edit-block").first();
   $editArea.empty();
@@ -13,8 +15,6 @@ function generateShip() {
 
   thrusterArray = [];
   while (thrusterArray.length == 0) {
-    var shipBlock = {};
-
     var tier = $("#tierPicker")
       .val()
       .trim()
@@ -510,12 +510,13 @@ function displayShipBlock(shipBlock) {
   //
   //Ship Block
   //
+  shipBlock.name = generateName(shipBlock.frame);
 
   textBlock = "";
   //description
   textBlock += "<hr>";
   textBlock += leftAndRight(
-    "<b>" + generateName(shipBlock.frame).toUpperCase() + "</b>",
+    "<b>" + shipBlock.name.toUpperCase() + "</b>",
     "<b>TIER " + shipBlock.tier + "</b>"
   );
   textBlock += "<hr>";
@@ -970,13 +971,14 @@ function saveBlock() {
 function blockToImage() {
   html2canvas(document.querySelector("#capture")).then((canvas) => {
     canvas.toBlob(function (blob) {
-      saveAs(blob, "shipblock.png");
+      saveAs(blob, shipBlock.name.replaceAll(" ", "_") + ".png");
     });
   });
 }
 
 //print the statblock
 function printBlock() {
+  document.title = shipBlock.name.replaceAll(" ", "_");
   window.print();
 }
 
