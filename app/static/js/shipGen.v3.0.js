@@ -370,140 +370,125 @@ function generateShip() {
       }
     }
   }
+
   //CREW
-  crewSkills = [
-    "Deception",
-    "Persuasion",
-    "Data",
-    "Technology",
-    "Intimidation",
-    "Piloting",
-    "Science",
-    "Arcana",
-  ];
-  expertSkill = crewSkills.selectRandom();
-  crewSkills.push("Gunnery");
-  goodSkill = crewSkills.selectRandom();
-  while (goodSkill === expertSkill) {
-    goodSkill = crewSkills.selectRandom();
-  }
-  crewSkillStrings = {};
-
-  for (var i = 0; i < crewSkills.length; i++) {
-    if (crewSkills[i] == expertSkill) {
-      var bonus =
-        crewAbilityBonus[shipBlock.tier][2] +
-        crewProficiencyBonus[shipBlock.tier] * 2 +
-        (crewSkills[i] == "Data" ? shipBlock.compMod : 0) +
-        (crewSkills[i] == "Piloting" ? shipBlock.piloting : 0);
-      crewSkillStrings[crewSkills[i]] =
-        crewSkills[i] + " +" + bonus + " (expert)";
-    } else if (crewSkills[i] == goodSkill) {
-      var bonus =
-        crewAbilityBonus[shipBlock.tier][1] +
-        crewProficiencyBonus[shipBlock.tier] +
-        (crewSkills[i] == "Data" ? shipBlock.compMod : 0) +
-        (crewSkills[i] == "Piloting" ? shipBlock.piloting : 0);
-      crewSkillStrings[crewSkills[i]] =
-        crewSkills[i] + " +" + bonus + " (good)";
-    } else {
-      var bonus =
-        crewAbilityBonus[shipBlock.tier][0] +
-        crewProficiencyBonus[shipBlock.tier] +
-        (crewSkills[i] == "Data" ? shipBlock.compMod : 0) +
-        (crewSkills[i] == "Piloting" ? shipBlock.piloting : 0);
-      crewSkillStrings[crewSkills[i]] =
-        crewSkills[i] + " +" + bonus + " (average)";
-    }
-    if (crewSkills[i] === "Piloting") {
-      shipBlock.AC = shipBlock.AC + bonus;
-      shipBlock.TL = shipBlock.TL + bonus;
-    }
-  }
-
-  shipBlock.captain = {};
-  shipBlock.engineer = {};
-  shipBlock.gunner = {};
-  shipBlock.pilot = {};
-  shipBlock.scienceOfficer = {};
-  shipBlock.captain.label = "Captain";
-  shipBlock.engineer.label = "Engineer";
-  shipBlock.gunner.label = "Gunner";
-  shipBlock.pilot.label = "Pilot";
-  shipBlock.scienceOfficer.label = "Science Officer";
-  shipBlock.captain.bonus = [];
-  shipBlock.engineer.bonus = [];
-  shipBlock.gunner.bonus = [];
-  shipBlock.pilot.bonus = [];
-  shipBlock.scienceOfficer.bonus = [];
-
-  if (
-    shipBlock.complement == 1 ||
-    shipBlock.complement == 2 ||
-    shipBlock.complement == 3
-  ) {
-    shipBlock.pilot.bonus.push(crewSkillStrings.Data);
-    shipBlock.pilot.bonus.push(crewSkillStrings.Gunnery);
-    shipBlock.pilot.bonus.push(crewSkillStrings.Piloting);
-    if (shipBlock.complement == 2 || shipBlock.complement == 3) {
-      shipBlock.gunner.bonus.push(crewSkillStrings.Gunnery);
-      if (shipBlock.complement == 3) {
-        shipBlock.engineer.bonus.push(crewSkillStrings.Technology);
-      }
-    }
-  } else if (shipBlock.complement == 4) {
-    for (string in crewSkillStrings) {
-      shipBlock.captain.bonus.push(crewSkillStrings[string]);
-    }
-    shipBlock.engineer.bonus.push(crewSkillStrings.Technology);
-    shipBlock.gunner.bonus.push(crewSkillStrings.Gunnery);
-    shipBlock.pilot.bonus.push(crewSkillStrings.Piloting);
-  } else {
-    remainingCrew = shipBlock.complement - 2; // for captain and pilot
-
-    if (remainingCrew > 40) {
-      var officers = [0, 0, 1, 2, 3].selectRandom();
-      if (officers != 0) {
-        shipBlock.captain.label +=
-          " (plus " + officers + " officer" + (officers == 1 ? "" : "s") + ")";
-        remainingCrew -= officers;
-      }
-    }
-    if (remainingCrew > 40) {
-      var officers = [0, 1, 1].selectRandom();
-      var crewMembers = getRandomInt(2, 10);
-      if (officers != 0) {
-        shipBlock.pilot.label += " (1 officer, " + crewMembers + " crew)";
-        remainingCrew -= crewMembers + 1;
-      }
-    }
-    var crewChunks = getThreeSplit(remainingCrew);
-    if (crewChunks[0] > 1) {
-      shipBlock.engineer.label += getCrewString(crewChunks[0], "Engineer");
-    }
-    if (crewChunks[1] > 1) {
-      shipBlock.gunner.label += getCrewString(crewChunks[1], "Gunner");
-    }
-    if (crewChunks[2] > 1) {
-      shipBlock.scienceOfficer.label += getCrewString(
-        crewChunks[2],
-        "Science Officer"
-      );
-    }
-
-    for (string in crewSkillStrings) {
-      shipBlock.captain.bonus.push(crewSkillStrings[string]);
-    }
-    shipBlock.engineer.bonus.push(crewSkillStrings.Technology);
-    shipBlock.pilot.bonus.push(crewSkillStrings.Piloting);
-    shipBlock.gunner.bonus.push(crewSkillStrings.Gunnery);
-    shipBlock.scienceOfficer.bonus.push(crewSkillStrings.Data);
-  }
+  addCrew();
 
   //PRINT
   displayShipBlock(shipBlock);
 
   ga("send", "event", "Generation", "starship", tier + ":" + frame);
+}
+
+function addCrew() {
+  shipBlock.crew = {};
+
+  //add the pilot
+  if (shipBlock.complement >= 1) {
+    shipBlock.crew.pilot = new CrewMember("Pilot", [
+      "Piloting",
+      "Gunnery",
+      "Technology",
+    ]);
+  }
+
+  // add a gunner or an engineer
+  if (shipBlock.complement >= 2) {
+    if (shipBlock.size <= 2) {
+      shipBlock.crew.gunner = new CrewMember("Gunner", ["Gunnery", "Data"]);
+    } else {
+      shipBlock.crew.engineer = new CrewMember("Engineer", [
+        "Technology",
+        "Gunnery",
+        "Data",
+      ]);
+    }
+  }
+
+  // add a science officer
+  if (shipBlock.complement >= 3) {
+    shipBlock.crew.scienceOfficer = new CrewMember("Science Officer", [
+      "Data",
+      "Science",
+      "Technology",
+    ]);
+  }
+
+  // add a captain
+  if (shipBlock.complement >= 4) {
+    shipBlock.crew.captain = new CrewMember("Captain", [
+      "Persuasion",
+      "Intimidation",
+      "Deception",
+    ]);
+  }
+
+  // add a gunner
+  if (shipBlock.complement >= 5) {
+    shipBlock.crew.gunner = new CrewMember("Gunner", ["Gunnery", "Data"]);
+  }
+
+  // add a magic officer
+  if (shipBlock.complement >= 6) {
+    shipBlock.crew.magicOfficer = new CrewMember("Magic Officer", ["Arcana"]);
+  }
+
+  // add a deck officer
+  if (shipBlock.complement >= 7) {
+    shipBlock.crew.deckOfficer = new CrewMember("Deck Officer", [
+      "Athletics",
+      "Acrobatics",
+    ]);
+  }
+
+  // fill out the remaining crew
+  remainingCrew = shipBlock.complement - 6;
+
+  if (remainingCrew > 40) {
+    var officers = [0, 0, 1, 2, 3].selectRandom();
+    if (officers != 0) {
+      shipBlock.crew.captain.label +=
+        " (plus " + officers + " officer" + (officers == 1 ? "" : "s") + ")";
+      remainingCrew -= officers;
+    }
+  }
+
+  if (remainingCrew > 40) {
+    var officers = [0, 1, 1].selectRandom();
+    var crewMembers = getRandomInt(2, 10);
+    if (officers != 0) {
+      shipBlock.crew.pilot.label += " (1 co-pilot, " + crewMembers + " crew)";
+      remainingCrew -= crewMembers + 1;
+    }
+  }
+  var crewChunks = splitNParts(remainingCrew, 5);
+  console.log(crewChunks);
+
+  if (crewChunks[0] > 1) {
+    shipBlock.crew.engineer.label += getCrewString(crewChunks[0], "Engineer");
+  }
+  if (crewChunks[1] > 1) {
+    shipBlock.crew.gunner.label += getCrewString(crewChunks[1], "Gunner");
+  }
+  if (crewChunks[2] > 1) {
+    shipBlock.crew.scienceOfficer.label += getCrewString(
+      crewChunks[2],
+      "Science Officer"
+    );
+  }
+  if (crewChunks[3] > 1) {
+    shipBlock.crew.magicOfficer.label += getCrewString(
+      crewChunks[3],
+      "Magic Officer"
+    );
+  }
+  if (crewChunks[4] > 1) {
+    shipBlock.crew.deckOfficer.label += getCrewString(
+      crewChunks[4],
+      "Deck Officer"
+    );
+  }
+  console.log(shipBlock.crew);
 }
 
 function displayShipBlock(shipBlock) {
@@ -654,49 +639,67 @@ function displayShipBlock(shipBlock) {
 
   textBlock += "<div><b>CREW</b></div>";
   textBlock += "<hr>";
-  if (shipBlock.captain.bonus.length != 0) {
+  if (shipBlock.crew.captain !== undefined) {
     textBlock +=
       "<div>" +
       "<b>" +
-      shipBlock.captain.label +
+      shipBlock.crew.captain.label +
       "</b> " +
-      shipBlock.captain.bonus.join(", ") +
+      shipBlock.crew.captain.skills +
       "</div>";
   }
-  if (shipBlock.engineer.bonus.length != 0) {
+  if (shipBlock.crew.pilot !== undefined) {
     textBlock +=
       "<div>" +
       "<b>" +
-      shipBlock.engineer.label +
+      shipBlock.crew.pilot.label +
       "</b> " +
-      shipBlock.engineer.bonus.join(", ") +
+      shipBlock.crew.pilot.skills +
       "</div>";
   }
-  if (shipBlock.gunner.bonus.length != 0) {
+  if (shipBlock.crew.engineer !== undefined) {
     textBlock +=
       "<div>" +
       "<b>" +
-      shipBlock.gunner.label +
+      shipBlock.crew.engineer.label +
       "</b> " +
-      shipBlock.gunner.bonus.join(", ") +
+      shipBlock.crew.engineer.skills +
       "</div>";
   }
-  if (shipBlock.pilot.bonus.length != 0) {
+  if (shipBlock.crew.gunner !== undefined) {
     textBlock +=
       "<div>" +
       "<b>" +
-      shipBlock.pilot.label +
+      shipBlock.crew.gunner.label +
       "</b> " +
-      shipBlock.pilot.bonus.join(", ") +
+      shipBlock.crew.gunner.skills +
       "</div>";
   }
-  if (shipBlock.scienceOfficer.bonus.length != 0) {
+  if (shipBlock.crew.scienceOfficer !== undefined) {
     textBlock +=
       "<div>" +
       "<b>" +
-      shipBlock.scienceOfficer.label +
+      shipBlock.crew.scienceOfficer.label +
       "</b> " +
-      shipBlock.scienceOfficer.bonus.join(", ") +
+      shipBlock.crew.scienceOfficer.skills +
+      "</div>";
+  }
+  if (shipBlock.crew.magicOfficer !== undefined) {
+    textBlock +=
+      "<div>" +
+      "<b>" +
+      shipBlock.crew.magicOfficer.label +
+      "</b> " +
+      shipBlock.crew.magicOfficer.skills +
+      "</div>";
+  }
+  if (shipBlock.crew.deckOfficer !== undefined) {
+    textBlock +=
+      "<div>" +
+      "<b>" +
+      shipBlock.crew.deckOfficer.label +
+      "</b> " +
+      shipBlock.crew.deckOfficer.skills +
       "</div>";
   }
 
@@ -855,7 +858,15 @@ function getCrewString(crewTotal, crewPosition) {
   var crewArray = [];
   if (crewTotal < 5) {
     var crewString = "";
-    if (["Engineer", "Science Officer", "Gunner"].includes(crewPosition)) {
+    if (
+      [
+        "Engineer",
+        "Science Officer",
+        "Magic Officer",
+        "Deck Officer",
+        "Gunner",
+      ].includes(crewPosition)
+    ) {
       crewString += "s";
     }
     crewString += " (" + crewTotal + ")";
@@ -871,7 +882,15 @@ function getCrewString(crewTotal, crewPosition) {
     }
     var selected = crewArray.selectRandom();
     var crewString = "";
-    if (["Engineer", "Science Officer", "Gunner"].includes(crewPosition)) {
+    if (
+      [
+        "Engineer",
+        "Science Officer",
+        "Magic Officer",
+        "Deck Officer",
+        "Gunner",
+      ].includes(crewPosition)
+    ) {
       crewString += "s";
     }
     if (selected[0] == 0) {
@@ -901,6 +920,16 @@ function getThreeSplit(input) {
   }
   split = shuffle(split);
   return split;
+}
+
+function* splitNParts(num, parts) {
+  let sumParts = 0;
+  for (let i = 0; i < parts - 1; i++) {
+    const pn = Math.ceil(Math.random() * (num - sumParts));
+    yield pn;
+    sumParts += pn;
+  }
+  yield num - sumParts;
 }
 
 function generateName(type) {
@@ -1001,6 +1030,68 @@ function shuffle(array) {
   }
 
   return array;
+}
+
+function getSkillLevel(skill) {
+  let roll = getRandomInt(1, 20);
+  if (roll == 20 && skill != "Gunnery") {
+    level = "expert";
+  } else if (roll > 12) {
+    level = "good";
+  } else {
+    level = "average";
+  }
+  return level;
+}
+
+function getSkillBonus(skill, level) {
+  let bonus =
+    (skill == "Data" ? shipBlock.compMod : 0) +
+    (skill == "Piloting" ? shipBlock.piloting : 0);
+
+  if (level == "expert") {
+    bonus =
+      crewAbilityBonus[shipBlock.tier][2] +
+      crewProficiencyBonus[shipBlock.tier] * 2;
+  } else if (level == "good") {
+    bonus =
+      crewAbilityBonus[shipBlock.tier][1] +
+      crewProficiencyBonus[shipBlock.tier];
+  } else {
+    bonus =
+      crewAbilityBonus[shipBlock.tier][0] +
+      crewProficiencyBonus[shipBlock.tier];
+  }
+  return bonus;
+}
+
+class CrewMember {
+  constructor(role, skills) {
+    this._label = role;
+    this._skills = [];
+    skills.forEach((skill) => {
+      let level = getSkillLevel(skill);
+      let bonus = getSkillBonus(skill, level);
+      skill += " +" + bonus;
+      skill += level != "average" ? " (" + level + ")" : "";
+      this._skills.push(skill);
+    });
+    console.log(this);
+  }
+
+  get label() {
+    return this._label;
+  }
+  /**
+   * @param {any} moreCrew
+   */
+  set label(moreCrew) {
+    this._label = moreCrew;
+  }
+
+  get skills() {
+    return this._skills.join(", ");
+  }
 }
 
 //runs when page is loaded
