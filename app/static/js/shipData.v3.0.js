@@ -714,6 +714,147 @@ var shipExpansionBays = {
     slots: 1,
     source: "ds",
   },
+  Afterburners: {
+    cost: {
+      BP: 2,
+      PCU: 2,
+    },
+    description: "+1 movement in a straight line",
+    minSize: 1,
+    slots: 1,
+    source: "dm",
+  },
+  "Arcane Cannon": {
+    cost: {
+      BP: 15,
+      PCU: 10,
+    },
+    description: "convert normal spell to mega damage",
+    minSize: 1,
+    slots: 1,
+    source: "dm",
+  },
+  "Captain's Chair": {
+    cost: {
+      BP: 2,
+      PCU: 0,
+    },
+    description: "Captain action as a bonus action once per day",
+    minSize: 1,
+    slots: 1,
+    source: "dm",
+  },
+  "Cloaking Device": {
+    cost: {
+      BP: 20,
+      PCU: 50,
+    },
+    description: "invisibility 5 minutes per 24 hours",
+    minSize: 1,
+    slots: 1,
+    source: "dm",
+  },
+  "Ded Reckoner": {
+    cost: {
+      BP: 2,
+      PCU: 2,
+    },
+    description: "+1 to Science roll for astrogation",
+    minSize: 1,
+    slots: 1,
+    source: "dm",
+  },
+  Fabricator: {
+    cost: {
+      BP: 5,
+      PCU: 20,
+    },
+    description:
+      "cast create food or water; Corvette or larger to cast fabricate",
+    minSize: 1,
+    slots: 1,
+    source: "dm",
+  },
+  "Arcane Capacitor": {
+    cost: {
+      BP: 10,
+      PCU: 1,
+    },
+    description: "holds 5th level slot; 24 hours to recharge; max 2",
+    minSize: 1,
+    slots: 1,
+    source: "dm",
+  },
+  "Life Pods": {
+    cost: {
+      BP: 1,
+      PCU: 2,
+    },
+    description: "one per crew and passenger",
+    minSize: 1,
+    slots: 1,
+    source: "dm",
+  },
+  Probe: {
+    cost: {
+      BP: 10,
+      PCU: 5,
+    },
+    description: "deployable sensor package; BP is cost of sensor installed",
+    minSize: 1,
+    slots: 1,
+    source: "dm",
+  },
+  "Radio Array": {
+    cost: {
+      BP: 1,
+      PCU: 1,
+    },
+    description: "send message out to 10,000 miles, rather than 1,000 miles",
+    minSize: 1,
+    slots: 1,
+    source: "dm",
+  },
+  "Repair Drones": {
+    cost: {
+      BP: 10,
+      PCU: 5,
+    },
+    description: "repair 1 Hull Point per Engineering Phase",
+    minSize: 1,
+    slots: 1,
+    source: "dm",
+  },
+  "Targeting Optics": {
+    cost: {
+      BP: 2,
+      PCU: 2,
+    },
+    description: "+1 attack on one weapon",
+    minSize: 1,
+    slots: 1,
+    source: "dm",
+  },
+  "Arcane Teleporter": {
+    cost: {
+      BP: 20,
+      PCU: 10,
+    },
+    description: "teleportation circle to within 100 miles of the ship",
+    minSize: 1,
+    slots: 1,
+    source: "dm",
+  },
+  "Tri-Probe": {
+    cost: {
+      BP: 5,
+      PCU: 0,
+    },
+    description: "holds up to 3 probes",
+    minSize: 1,
+    slots: 1,
+    source: "dm",
+  },
 };
 
 var shipFrames = {
