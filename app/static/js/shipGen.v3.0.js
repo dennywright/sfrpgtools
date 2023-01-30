@@ -376,110 +376,155 @@ function generateShip() {
 
   //PRINT
   displayShipBlock(shipBlock);
+  console.log(shipBlock);
 
   ga("send", "event", "Generation", "starship", tier + ":" + frame);
 }
 
 function addCrew() {
   shipBlock.crew = {};
+  let remainingCrew = shipBlock.complement;
+  let numMounts = 0;
+  let arcane = false;
+  for (const mount in shipBlock.mounts) {
+    console.log(
+      `${mount}: ${shipBlock.mounts[mount]} ${shipBlock.mounts[mount].length}`
+    );
+    numMounts += shipBlock.mounts[mount].length;
+  }
+  console.log(`numMounts=${numMounts}`);
+  for (const expansion in shipBlock.expansionBayArray) {
+    if (expansion.includes("Arcane")) {
+      arcane = true;
+      break;
+    }
+  }
+  console.log(`arcane=${arcane}`);
 
   //add the pilot
-  if (shipBlock.complement >= 1) {
+  if (remainingCrew > 0) {
     shipBlock.crew.pilot = new CrewMember("Pilot", [
       "Piloting",
       "Gunnery",
       "Technology",
     ]);
+    remainingCrew -= 1;
   }
 
   // add a gunner or an engineer
-  if (shipBlock.complement >= 2) {
-    if (shipBlock.size <= 2) {
+  if (remainingCrew > 0) {
+    if (numMounts > 0 && shipBlock.size <= 2) {
+      // fighter or smaller would have a gunner
       shipBlock.crew.gunner = new CrewMember("Gunner", ["Gunnery", "Data"]);
     } else {
+      // larger ship would have an engineer
       shipBlock.crew.engineer = new CrewMember("Engineer", [
         "Technology",
         "Gunnery",
         "Data",
       ]);
     }
+    remainingCrew -= 1;
   }
 
-  // add a science officer
-  if (shipBlock.complement >= 3) {
+  // add a science officer next
+  if (remainingCrew > 0) {
     shipBlock.crew.scienceOfficer = new CrewMember("Science Officer", [
       "Data",
       "Science",
       "Technology",
     ]);
+    remainingCrew -= 1;
   }
 
   // add a captain
-  if (shipBlock.complement >= 4) {
+  if (remainingCrew > 0) {
     shipBlock.crew.captain = new CrewMember("Captain", [
       "Persuasion",
       "Intimidation",
       "Deception",
     ]);
+    remainingCrew -= 1;
   }
 
   // add a gunner
-  if (shipBlock.complement >= 5) {
+  if (numMounts > 0 && remainingCrew > 0) {
     shipBlock.crew.gunner = new CrewMember("Gunner", ["Gunnery", "Data"]);
+    remainingCrew -= 1;
   }
 
-  // add a magic officer
-  if (shipBlock.complement >= 6) {
+  // arcane components would have a magic officer
+  if (arcane && remainingCrew > 0) {
     shipBlock.crew.magicOfficer = new CrewMember("Magic Officer", ["Arcana"]);
+    remainingCrew -= 1;
   }
 
   // add a deck officer
-  if (shipBlock.complement >= 7) {
+  if (remainingCrew > 0) {
     shipBlock.crew.deckOfficer = new CrewMember("Deck Officer", [
       "Athletics",
       "Acrobatics",
     ]);
+    remainingCrew -= 1;
   }
 
-  // fill out the remaining crew
-  remainingCrew = shipBlock.complement - 6;
-
+  // large crew may have some officers
   if (remainingCrew > 40) {
     var officers = [0, 0, 1, 2, 3].selectRandom();
     if (officers != 0) {
       shipBlock.crew.captain.label +=
         " (plus " + officers + " officer" + (officers == 1 ? "" : "s") + ")";
-      remainingCrew -= officers;
     }
+    remainingCrew -= officers;
   }
 
+  // large ship may have a co-pilot and crew
   if (remainingCrew > 40) {
-    var officers = [0, 1, 1].selectRandom();
+    var copilot = [0, 1, 1].selectRandom();
     var crewMembers = getRandomInt(2, 10);
-    if (officers != 0) {
-      shipBlock.crew.pilot.label += " (1 co-pilot, " + crewMembers + " crew)";
-      remainingCrew -= crewMembers + 1;
+    if (copilot != 0) {
+      shipBlock.crew.pilot.label +=
+        " (plus " +
+        (copilot == 1 ? `1 co-pilot, ` : "") +
+        `${crewMembers} crew)`;
     }
+    remainingCrew -= copilot + crewMembers;
   }
-  var crewChunks = splitNParts(remainingCrew, 5);
-  console.log(crewChunks);
 
+  // large ship would have gunnery crew for each mount
+  if (numMounts > 1 && remainingCrew > 40) {
+    var officers = numMounts - 1;
+    var crewMembers = numMounts * getRandomInt(2, 4);
+    if (officers != 0) {
+      shipBlock.crew.gunner.label += `(${officers} officers + ${crewMembers} crew)`;
+    }
+    remainingCrew -= officers + crewMembers;
+  }
+
+  // magic officer might have some apprentices
+  if (arcane && remainingCrew > 40) {
+    var apprentices = [0, 0, 1, 2, 3].selectRandom();
+    if (apprentices != 0) {
+      shipBlock.crew.magicOfficer.label +=
+        " (plus " +
+        apprentices +
+        " apprentice" +
+        (apprentices == 1 ? "" : "s") +
+        ")";
+    }
+    remainingCrew -= apprentices;
+  }
+
+  // split the rest between engineers, science and deck officers
+  var crewChunks = getThreeSplit(remainingCrew);
+  console.log(crewChunks);
   if (crewChunks[0] > 1) {
     shipBlock.crew.engineer.label += getCrewString(crewChunks[0], "Engineer");
-  }
-  if (crewChunks[1] > 1) {
-    shipBlock.crew.gunner.label += getCrewString(crewChunks[1], "Gunner");
   }
   if (crewChunks[2] > 1) {
     shipBlock.crew.scienceOfficer.label += getCrewString(
       crewChunks[2],
       "Science Officer"
-    );
-  }
-  if (crewChunks[3] > 1) {
-    shipBlock.crew.magicOfficer.label += getCrewString(
-      crewChunks[3],
-      "Magic Officer"
     );
   }
   if (crewChunks[4] > 1) {
@@ -657,15 +702,6 @@ function displayShipBlock(shipBlock) {
       shipBlock.crew.pilot.skills +
       "</div>";
   }
-  if (shipBlock.crew.engineer !== undefined) {
-    textBlock +=
-      "<div>" +
-      "<b>" +
-      shipBlock.crew.engineer.label +
-      "</b> " +
-      shipBlock.crew.engineer.skills +
-      "</div>";
-  }
   if (shipBlock.crew.gunner !== undefined) {
     textBlock +=
       "<div>" +
@@ -673,6 +709,15 @@ function displayShipBlock(shipBlock) {
       shipBlock.crew.gunner.label +
       "</b> " +
       shipBlock.crew.gunner.skills +
+      "</div>";
+  }
+  if (shipBlock.crew.engineer !== undefined) {
+    textBlock +=
+      "<div>" +
+      "<b>" +
+      shipBlock.crew.engineer.label +
+      "</b> " +
+      shipBlock.crew.engineer.skills +
       "</div>";
   }
   if (shipBlock.crew.scienceOfficer !== undefined) {
@@ -920,16 +965,6 @@ function getThreeSplit(input) {
   }
   split = shuffle(split);
   return split;
-}
-
-function* splitNParts(num, parts) {
-  let sumParts = 0;
-  for (let i = 0; i < parts - 1; i++) {
-    const pn = Math.ceil(Math.random() * (num - sumParts));
-    yield pn;
-    sumParts += pn;
-  }
-  yield num - sumParts;
 }
 
 function generateName(type) {
